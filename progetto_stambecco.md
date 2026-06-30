@@ -42,23 +42,20 @@ Dove $x_i$ rappresenta il valore di NDVI del singolo pixel all'interno della fin
 ---
 
 ## 💻 Codice R
-Il seguente script contiene l'intero flusso di lavoro commentato, dall'importazione dei dati del pacchetto `imageRy` fino alla generazione della cartografia finale in `ggplot2`.
+Il seguente script contiene l'intero lavoro commentato, dall'importazione dei dati del pacchetto `imageRy` fino alla generazione della cartografia finale in `ggplot2`.
 
+### 1. Caricamento delle librerie necessarie
 ```r
-# ==============================================================================
-# PROGETTO DI TELERILEVAMENTO 2026 - CORSO PROF. DUCCIO ROCCHINI
-# Monitoraggio della Fenologia del Pascolo Alpino per lo Stambecco 
-# ==============================================================================
-
-# 1. Caricamento delle librerie necessarie
 library(terra)      # Gestione dei dati raster geografici
 library(ggplot2)    # Visualizzazione grafica avanzata e mappatura
 library(viridis)    # Palette cromatiche percettivamente uniformi
 library(rasterdiv)  # Calcolo dell'eterogeneità spaziale 
 library(imageRy)    # Database con dati e funzioni del corso
 library(patchwork)  # Assemblaggio grafico multiframe per ggplot2
+```
 
-# 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
+### 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
+```r
 ndvi_feb <- im.import("Sentinel2_NDVI_2020-02-21.tif") # Inverno (Dormienza/Neve)
 ndvi_mag <- im.import("Sentinel2_NDVI_2020-05-21.tif") # Primavera (Greening)
 ndvi_ago <- im.import("Sentinel2_NDVI_2020-08-01.tif") # Estate (Picco/Siccità)
@@ -70,19 +67,25 @@ names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 
 # Visualizzazione della serie fenologica stagionale
 plot(punti_stagionali, col=viridis(100))
+```
 
-# 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
+### 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
+```r
 diff_estate_primavera <- ndvi_ago - ndvi_mag
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")
+```
 
-# 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
+### 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
+```r
 im.multiframe(1, 2)
 hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI")
 hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI")
 dev.off() # Reset del pannello grafico
+```
 
-# 5. RICLASSIFICAZIONE IN CLASSI ESTRATTE E CALCOLO DELLE PERCENTUALI
+### 5. RICLASSIFICAZIONE IN CLASSI ESTRATTE E CALCOLO DELLE PERCENTUALI
+```r
 # Definizione delle matrici di soglia ecologica
 matrice_classi <- matrix(c(-Inf, 0.2, 1, 
                            0.2, 0.5, 2, 
@@ -102,8 +105,10 @@ tabella_esame <- data.frame(
   Agosto_Perc = round(perc_ago, 2)
 )
 print(tabella_esame)
+```
 
-# 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
+### 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
+```r
 p1 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Maggio_Perc, fill = Stato_Pascolo)) +    
   geom_bar(stat = "identity") + scale_fill_viridis_d(option = "viridis") + ylim(0, 100) +
   labs(title = "Copertura a Maggio (Primavera)", y = "Percentuale (%)", x = NULL) + 
@@ -114,8 +119,10 @@ p2 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Agosto_Perc, fill = Stato
   labs(title = "Copertura ad Agosto (Estate)", y = "%", x = NULL) + theme_minimal()
 
 p1 + p2
+```
 
-# 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE CON FINESTRA MOBILE 3x3
+### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE CON FINESTRA MOBILE 3x3
+```r
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
 
 # Conversione del raster in dataframe per ggplot

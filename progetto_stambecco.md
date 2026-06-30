@@ -90,4 +90,5 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
 
 # 03_eterogeneita_ggplot.png
 
+<img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/2f8c9e76-306a-458a-8195-2f78e1d960a2" />
 

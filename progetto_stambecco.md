@@ -1,7 +1,6 @@
 # Analisi Multitemporale della fenologia del pascolo alpino: implicazioni ecologiche per lo stambecco (*Capra ibex*) nelle Dolomiti
 
-<img width="894" height="596" alt="Screenshot 2026-06-30 184505" src="https://github.com/user-attachments/assets/75cfcfdf-b75b-4565-ae8b-48559e35c851" />
-
+<img width="640" height="425" alt="stambecco_1" src="https://github.com/user-attachments/assets/83246e42-8929-457f-a535-a25442d94362" />
 
 ## 📌 Introduzione e Obiettivi Ecologici
 Il cambiamento climatico sta provocando profonde alterazioni negli ecosistemi d'alta quota, modificando i ritmi stagionali della vegetazione (*mismatch fenologico*). Questo progetto applica le tecniche di **Telerilevamento (Remote Sensing)** per monitorare la dinamica temporale e la struttura spaziale dei pascoli montani nel **Passo Falzarego (Dolomiti)** nel corso dell'anno 2020, utilizzando i dati del satellite **Sentinel-2**.

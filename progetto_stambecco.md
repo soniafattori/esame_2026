@@ -63,6 +63,8 @@ names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 plot(punti_stagionali, col=viridis(100))
 
 # 01_serie_stagionale.png
+<img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/28c05782-0911-4b11-9945-f6b69cd2f07d" />
+
 
 # 2. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
 diff_estate_primavera <- ndvi_ago - ndvi_mag
@@ -90,5 +92,5 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
 
 # 03_eterogeneita_ggplot.png
 
-<img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/2f8c9e76-306a-458a-8195-2f78e1d960a2" />
+
 

@@ -96,12 +96,12 @@ La figura seguente mostra la variazione della biomassa vegetale nel Passo Falzar
 ### 2. Mappa di Rilevamento del Cambiamento ($\Delta NDVI$)
 Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggette a forte disseccamento estivo della risorsa trofica:
 
-![Mappa Differenza NDVI](./02_differenza_ndvi.png)
+<img width="1536" height="738" alt="02_differenza_ndvi" src="https://github.com/user-attachments/assets/cb070c63-793c-4876-8488-ccbbe1c6d5ae" />
 
 ### 3. Mappa Finale dell'Eterogeneità Spaziale
 Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):
 
-![Eterogeneità Spaziale](./03_eterogeneita_ggplot.png)
+<img width="1536" height="738" alt="03_eterogeneita_ggplot" src="https://github.com/user-attachments/assets/005b5b94-5041-4a4e-8b85-ad4d343ffcaf" />
 
 ---
 

@@ -91,7 +91,8 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
 ### 1. Dinamica Fenologica Stagionale (NDVI)
 La figura seguente mostra la variazione della biomassa vegetale nel Passo Falzarego durante le quattro stagioni dell'anno 2020, evidenziando il ciclo di crescita e dormienza:
 
-![Serie Temporale NDVI](./01_serie_stagionale.png)
+<img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/4b79ba98-572a-4df6-9f9d-b07d260ebca9" />
+
 
 ### 2. Mappa di Rilevamento del Cambiamento ($\Delta NDVI$)
 Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggette a forte disseccamento estivo della risorsa trofica:

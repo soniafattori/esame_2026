@@ -63,8 +63,6 @@ names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 plot(punti_stagionali, col=viridis(100))
 
 # 01_serie_stagionale.png
-<img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/28c05782-0911-4b11-9945-f6b69cd2f07d" />
-
 
 # 2. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
 diff_estate_primavera <- ndvi_ago - ndvi_mag
@@ -91,6 +89,50 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
   theme_minimal()
 
 # 03_eterogeneita_ggplot.png
+
+## 📊 Visualizzazione dell'Output Cartografico
+### 1. Dinamica Fenologica Stagionale (NDVI)
+La figura seguente mostra la variazione della biomassa vegetale nel Passo Falzarego durante le quattro stagioni dell'anno 2020, evidenziando il ciclo di crescita e dormienza:
+
+![Serie Temporale NDVI](./01_serie_stagionale.png)
+
+### 2. Mappa di Rilevamento del Cambiamento ($\Delta NDVI$)
+Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggette a forte disseccamento estivo della risorsa trofica:
+
+![Mappa Differenza NDVI](./02_differenza_ndvi.png)
+
+### 3. Mappa Finale dell'Eterogeneità Spaziale
+Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):
+
+![Eterogeneità Spaziale](./03_eterogeneita_ggplot.png)
+
+---
+
+## 📈 Discussione e conclusioni ecologiche
+
+L'applicazione del telerilevamento satellitare multitemporale ha permesso di estrarre informazioni cruciali sulla dinamica dei pascoli d'alta quota nel Passo Falzarego, fornendo una chiave di lettura spaziale per l'ecologia del comportamento dello Stambecco Alpino (*Capra ibex*).
+
+### 1. Dinamica Fenologica e Risveglio Primaverile (*Greening*)
+La serie temporale dell'NDVI evidenzia i classici ritmi degli ecosistemi alpini fortemente condizionati dal fattore neve. 
+* A **Febbraio**, i valori di NDVI prossimi allo zero testimoniano la dominanza della copertura nevosa e la totale dormienza della vegetazione. In questa fase, gli stambecchi riducono al minimo i movimenti e il metabolismo, sopravvivendo grazie alle riserves adipose.
+* A **Maggio**, l'aumento delle temperature e la conseguente fusione della neve innescano l'esplosione vegetativa (*greening*). La mappa mostra picchi di NDVI elevati nelle valli e sui versanti ben esposti. Questo incremento corrisponde ecologicamente alla massima disponibilità di foraggio fresco, tenero, povero di fibra grezza e ricchissimo di azoto. Gli stambecchi scendono temporaneamente di quota per sfruttare questa risorsa primaria, fondamentale per recuperare il peso perso in inverno e per supportare l'allattamento dei capretti.
+
+### 2. Stress Idrico Estivo e Spostamento Altitudinale
+La transizione verso il mese di **Agosto** rappresenta il punto di svolta ecologico, quantificato matematicamente tramite la mappa di differenza ($\Delta NDVI = Agosto - Maggio$). 
+L'analisi mostra diffuse anomalie negative (colorazioni scure nella palette *magma*), concentrate soprattutto nelle fasce altitudinali inferiori e nei fondovalle stabili. Questo gradiente negativo indica un fenomeno di senescenza precoce e disseccamento dell'erba causato dallo stress termico estivo. 
+
+Per lo stambecco, l'inaridimento del pascolo di bassa quota si traduce in una perdita drastica della qualità nutritiva (l'erba diventa legnosa e indigeribile). Inoltre, lo stambecco è un animale fortemente adattato al freddo, che manifesta segni di stress termico già sopra i 15 °C. La mappa di differenza giustifica spazialmente la **migrazione verticale obbligata**: l'animale abbandona i fondovalle inariditi per risalire verso le quote superiori e le aree vicine alle creste rocciose, dove la fusione tardiva dei nevai perenni mantiene attive piccole nicchie di pascolo fresco e idoneo anche in piena estate.
+
+### 3. Eterogeneità Ambientale come Nicchia di Rifugio
+La mappa finale dell'eterogeneità spaziale, calcolata mediante deviazione standard spaziale su una finestra mobile $3 \times 3$, rivela i pattern di frammentazione del paesaggio alpino in estate. Valori elevati di eterogeneità (aree luminose in palette *inferno*) si riscontrano in corrispondenza degli ecotoni geomorfologici, ovvero le zone di transizione dove le pareti rocciose scoscese e i ghiaioni si mescolano a frammenti di prateria alpina.
+
+Dal punto di vista ecologico, queste zone ad alta eterogeneità rappresentano il perfetto **trade-off comportamentale** e la principale nicchia di rifugio estiva per lo stambecco:
+1. **Termoregolazione e Sicurezza:** La vicinanza alle pareti di roccia verticale offre all'animale vie di fuga immediate dai predatori (come il lupo) e zone d'ombra fresca dove riposare durante le ore centrali e più calde della giornata.
+2. **Alimentazione di precisione:** Le piccole chiazze di vegetazione incastonate tra i detriti rocciosi d'alta quota, seppur frammentate, sono protette dall'inaridimento di massa e forniscono il nutrimento necessario senza costringere l'animale a scendere a valle.
+
+In conclusione, l'integrazione di indici spettrali come l'NDVI con metriche di variabilità spaziale (*focal standard deviation*) si dimostra uno strumento predittivo fondamentale per monitorare la perdita di idoneità degli habitat alpini causata dal global warming e per pianificare le strategie di conservazione delle specie sensibili d'alta quota.
+
+
 
 
 

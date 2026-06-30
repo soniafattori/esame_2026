@@ -82,7 +82,8 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
   labs(title="Eterogeneità Spaziale del Pascolo Alpino in Estate",
        subtitle="Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
        x="Longitudine", y="Latitudine") +
-  theme_minimal() ```
+  theme_minimal()
+```
 
 ---
 

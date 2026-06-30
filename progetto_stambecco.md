@@ -89,3 +89,5 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
   theme_minimal()
 
 # 03_eterogeneita_ggplot.png
+
+

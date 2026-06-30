@@ -83,6 +83,7 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
        subtitle="Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
        x="Longitudine", y="Latitudine") +
   theme_minimal()```
+
 ---
 
 ## 📊 Visualizzazione dell'Output Cartografico 

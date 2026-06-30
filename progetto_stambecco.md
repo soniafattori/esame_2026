@@ -62,14 +62,10 @@ names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 # Visualizzazione della serie fenologica stagionale
 plot(punti_stagionali, col=viridis(100))
 
-# 01_serie_stagionale.png
-
 # 2. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
 diff_estate_primavera <- ndvi_ago - ndvi_mag
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")
-
- # 02_differenza_ndvi.png
 
 # 3. CALCOLO DELL'ETEROGENEITÀ SPAZIALE CON FINESTRA MOBILE 3x3
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
@@ -86,12 +82,11 @@ ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
   labs(title="Eterogeneità Spaziale del Pascolo Alpino in Estate",
        subtitle="Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
        x="Longitudine", y="Latitudine") +
-  theme_minimal()
-```
+  theme_minimal()```
 
-# 03_eterogeneita_ggplot.png
+---
 
-## 📊 Visualizzazione dell'Output Cartografico
+## 📊 Visualizzazione dell'Output Cartografico 
 ### 1. Dinamica Fenologica Stagionale (NDVI)
 La figura seguente mostra la variazione della biomassa vegetale nel Passo Falzarego durante le quattro stagioni dell'anno 2020, evidenziando il ciclo di crescita e dormienza:
 

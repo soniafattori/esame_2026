@@ -1,5 +1,6 @@
 # Analisi Multitemporale della fenologia del pascolo alpino: implicazioni ecologiche per lo stambecco (*Capra ibex*) nelle Dolomiti
 
+<img width="894" height="596" alt="Screenshot 2026-06-30 184505" src="https://github.com/user-attachments/assets/75cfcfdf-b75b-4565-ae8b-48559e35c851" />
 
 
 ## 📌 Introduzione e Obiettivi Ecologici

@@ -54,8 +54,8 @@ plot(diff_estate_primavera, col=magma(100),
 # Generiamo un pannello con due istogrammi per osservare lo shift matematico dei pixel
 
 im.multiframe(1, 2)
-hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI")
-hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI")     # 04_istogrammi_confronto.png
+hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
+hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000     # 04_istogrammi_confronto.png
 
 # Reset del pannello grafico
 

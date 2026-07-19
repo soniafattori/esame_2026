@@ -163,17 +163,15 @@ Confronto delle frequenze dei pixel di NDVI, evidenziando lo shift e la ristrutt
 
 <img width="1536" height="715" alt="04_istogrammi_confronto" src="https://github.com/user-attachments/assets/ec65b960-e236-454c-ba89-acc2a17257b5" />
 
-
 ### 4. Grafico di Copertura Percentuale Estratta
 Come evidenziato dall'elaborazione statistica ggplot2, la ripartizione del territorio mostra un incremento netto del pascolo sano nel mese estivo dovuto alla deglaciazione delle vette:
 
-<img width="1536" height="715" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/185356c5-a741-4fa2-846d-72ec0049eb6b" />
-
+<img width="1536" height="715" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/09857ac9-e611-483f-8f4c-da1b8615dee0" />
 
 ### 5. Mappa Finale dell'Eterogeneità Spaziale
 Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):
 
-<img width="1536" height="738" alt="03_eterogeneita_ggplot" src="https://github.com/user-attachments/assets/005b5b94-5041-4a4e-8b85-ad4d343ffcaf" />
+<img width="1136" height="470" alt="03_eterogeneita_ggplot" src="https://github.com/user-attachments/assets/7b812826-0a02-421b-b809-c017a39198dd" />
 
 ---
 
@@ -182,9 +180,9 @@ La riclassificazione computerizzata ha prodotto i seguenti risultati percentuali
 
 | Stato Pascolo | Maggio (%) | Agosto (%) |
 | :--- | :---: | :---: |
-| **Roccia/Suolo Nudo** | 21.95 | 9.83 |
-| **Pascolo Degradato** | 22.47 | 10.07 |
-| **Pascolo Sano** | 50.76 | 75.27 |
+| **Roccia/Suolo Nudo** | 23.06 | 10.33 |
+| **Pascolo Degradato** | 23.61 | 10.58 |
+| **Pascolo Sano** | 53.33 | 79.09 |
 | **Totale** | 100.00 | 100.00 |
 
 ---

@@ -3,17 +3,13 @@
 install.packages("terra")                 # Gestione dei dati raster geografici
 install.packages("ggplot2")               # Utilizzato per la visualizzazione grafica avanzata e la mappatura
 install.packages("viridis")               # Palette di colori per l'accessibilità visiva
-install.packages("rasterdiv")             # Il pacchetto per il calcolo dell'eterogeneità spaziale
-install.packages("devtools")              # Necessario per scaricare pacchetti da GitHub
 install_github("ducciorocchini/imageRy")  # Repository di dati e funzioni didattiche del corso
 install.packages("patchwork")             # Necessario per affiancare grafici ggplot2 diversi
 
 library(terra)
 library(ggplot2)
 library(viridis)
-library(rasterdiv)
 library(imageRy)
-library(devtools)
 library(patchwork)
 
 # 2. IMPORTAZIONE E STACKING DEI DATI SATELITARI (SENTINEL-2) 

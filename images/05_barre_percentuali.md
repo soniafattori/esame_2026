@@ -1,2 +1,3 @@
 
-<img width="1536" height="738" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/9bd85a97-c139-4bbb-b734-7680db704a9f" />
+<img width="1536" height="715" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/81976a0e-c070-4298-87c4-80ea5ebc2a1d" />
+

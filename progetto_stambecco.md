@@ -154,7 +154,8 @@ Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggett
 ### 3. Istogrammi di Distribuzione Spettrale
 Confronto delle frequenze dei pixel di NDVI, evidenziando lo shift e la ristrutturazione della popolazione dei pixel tra primavera ed estate:
 
-<img width="1536" height="738" alt="04_istogrammi_confronto" src="https://github.com/user-attachments/assets/dd898a84-79fa-4eea-8432-327884d19443" />
+<img width="1536" height="715" alt="04_istogrammi_confronto" src="https://github.com/user-attachments/assets/ec65b960-e236-454c-ba89-acc2a17257b5" />
+
 
 ### 4. Grafico di Copertura Percentuale Estratta
 Come evidenziato dall'elaborazione statistica ggplot2, la ripartizione del territorio mostra un incremento netto del pascolo sano nel mese estivo dovuto alla deglaciazione delle vette:

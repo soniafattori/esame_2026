@@ -42,7 +42,7 @@ Dove $x_i$ rappresenta il valore di NDVI del singolo pixel all'interno della fin
 ---
 
 ## 💻 Codice R
-Il seguente script contiene l'intero lavoro commentato, dall'importazione dei dati del pacchetto `imageRy` fino alla generazione della cartografia finale in `ggplot2`.
+Il seguente script contiene l'intero lavoro commentato.
 
 ### 1. Caricamento delle librerie necessarie
 ```r

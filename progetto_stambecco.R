@@ -89,6 +89,11 @@ tabella_esame <- data.frame(
   Agosto_Perc = round(perc_ago, 2)
 )
 
+# Facciamo in modo che ggplot2 mantenga questo ordine logico-ecologico sull'asse X
+
+tabella_esame$Stato_Pascolo <- factor(tabella_esame$Stato_Pascolo, 
+                                      levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"))
+
 # Stampiamo a schermo la tabella finale per estrarre i dati numerici della relazione
 
 print(tabella_esame)

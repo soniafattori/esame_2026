@@ -109,13 +109,16 @@ tabella_long <- data.frame(
   Percentuale = c(tabella_esame$Maggio, tabella_esame$Agosto)
 )
 
+# Inseriamo l'ordine cronologico (Maggio prima di Agosto)
+tabella_long$Mese <- factor(tabella_long$Mese, levels = c("Maggio", "Agosto"))
+
 # Grafico a barre raggruppate
 ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
   geom_bar(stat = "identity", position = "dodge") +
-  scale_fill_manual(values = c("orange", "darkgreen")) +
+  scale_fill_manual(values = c("darkgreen", "orange")) +
   labs(title = "Evoluzione delle Classi di Pascolo al Passo Falzarego",
        x = "Tipologia di Copertura", y = "Percentuale sul totale (%)") +
-  theme_minimal()
+  theme_minimal()                                              #05_barre_percentuali.png
 
 # 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
 # Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 

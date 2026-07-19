@@ -1,3 +1,3 @@
 
-![04_istogrammi_confronto](https://github.com/user-attachments/assets/b7d52951-8731-480f-822b-2298d38c6072)
+<img width="1536" height="715" alt="04_istogrammi_confronto" src="https://github.com/user-attachments/assets/a4987c3a-56db-4653-8ff8-2b64bb6ddd7b" />
 

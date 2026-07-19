@@ -98,7 +98,8 @@ tabella_esame$Stato_Pascolo <- factor(tabella_esame$Stato_Pascolo,
 
 print(tabella_esame)
 
-# Generiamo il grafico a barre comparative affiancate sfruttando il pacchetto patchwork
+# 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
+
 # Grafico Maggio (Primavera)
 
 p1 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Maggio_Perc, fill = Stato_Pascolo)) +    
@@ -122,7 +123,7 @@ p2 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Agosto_Perc, fill = Stato
 
 p1 + p2    # 05_barre_percentuali.png
 
-# 6. CALCOLO DELL'ETEROGENEITÀ SPAZIALE (APPROCCIO RASTERDIV) SULLA MAPPA DI AGOSTO
+# 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
 # Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
 # w = matrix(1,3,3) definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
 # fun = sd stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
@@ -130,7 +131,7 @@ p1 + p2    # 05_barre_percentuali.png
 
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
 
-# 7. VISUALIZZAZIONE AVANZATA CON GGPLOT2
+# 8. VISUALIZZAZIONE AVANZATA CON GGPLOT2
 # Per utilizzare ggplot2 dobbiamo convertire il formato spaziale 'SpatRaster' in un comune dataframe. 
 # xy = TRUE estrae esplicitamente le coordinate geografiche (Longitudine e Latitudine) di ogni pixel. 
 # na.rm = TRUE elimina i record vuoti per alleggerire la memoria del dataset.

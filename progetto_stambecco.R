@@ -1,12 +1,14 @@
 # 1. Installazione pacchetti e caricamento librerie
 
 install.packages("terra")                 # Gestione dei dati raster geografici
+install.packages("tidyterra")             # Integrazione nativa di oggetti SpatRaster in ggplot2
 install.packages("ggplot2")               # Utilizzato per la visualizzazione grafica avanzata e la mappatura
 install.packages("viridis")               # Palette di colori per l'accessibilità visiva
 install_github("ducciorocchini/imageRy")  # Repository di dati e funzioni didattiche del corso
 install.packages("patchwork")             # Necessario per affiancare grafici ggplot2 diversi
 
 library(terra)
+library(tidyterra)
 library(ggplot2)
 library(viridis)
 library(imageRy)
@@ -76,52 +78,44 @@ matrice_classi <- matrix(c(-Inf, 0.2, 1,
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
 
-# Calcoliamo le frequenze dei pixel e ricaviamo le percentuali sul totale delle celle
+# Estrazione sicura delle frequenze (Metodo robusto per terra)
+f_mag <- freq(classi_mag)
+f_ago <- freq(classi_ago)
 
-perc_mag <- freq(classi_mag)$count * 100 / ncell(classi_mag)
-perc_ago <- freq(classi_ago)$count * 100 / ncell(classi_ago)
+# Calcolo delle percentuali escludendo i pixel NA dal totale
+tot_pixel_mag <- sum(f_mag$count)
+tot_pixel_ago <- sum(f_ago$count)
+
+perc_mag <- (f_mag$count / tot_pixel_mag) * 100
+perc_ago <- (f_ago$count / tot_pixel_ago) * 100
 
 # Organizziamo i dati in un dataframe strutturato per la tabella e per ggplot2
 
 tabella_esame <- data.frame(
-  Stato_Pascolo = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
-  Maggio_Perc = round(perc_mag, 2),
-  Agosto_Perc = round(perc_ago, 2)
+  Stato_Pascolo = factor(c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
+                         levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano")),
+  Maggio = round(perc_mag, 2),
+  Agosto = round(perc_ago, 2)
 )
-
-# Facciamo in modo che ggplot2 mantenga questo ordine logico-ecologico sull'asse X
-
-tabella_esame$Stato_Pascolo <- factor(tabella_esame$Stato_Pascolo, 
-                                      levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"))
-
-# Stampiamo a schermo la tabella finale per estrarre i dati numerici della relazione
 
 print(tabella_esame)
 
 # 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
 
-# Grafico Maggio (Primavera)
+# Riorganizziamo il dataframe in formato "long" per facilitare il plotting
+tabella_long <- data.frame(
+  Stato_Pascolo = rep(tabella_esame$Stato_Pascolo, 2),
+  Mese = c(rep("Maggio", 3), rep("Agosto", 3)),
+  Percentuale = c(tabella_esame$Maggio, tabella_esame$Agosto)
+)
 
-p1 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Maggio_Perc, fill = Stato_Pascolo)) +    
-  geom_bar(stat = "identity") + 
-  scale_fill_viridis_d(option = "viridis") + 
-  ylim(0, 100) +
-  labs(title = "Copertura a Maggio (Primavera)", y = "Percentuale (%)", x = NULL) + 
-  theme_minimal() + 
-  theme(legend.position = "none")
-
-# Grafico Agosto (Estate)
-
-p2 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Agosto_Perc, fill = Stato_Pascolo)) +
-  geom_bar(stat = "identity") + 
-  scale_fill_viridis_d(option = "viridis") + 
-  ylim(0, 100) +
-  labs(title = "Copertura ad Agosto (Estate)", y = "%", x = NULL) + 
+# Grafico a barre raggruppate
+ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("orange", "darkgreen")) +
+  labs(title = "Evoluzione delle Classi di Pascolo al Passo Falzarego",
+       x = "Tipologia di Copertura", y = "Percentuale sul totale (%)") +
   theme_minimal()
-
-# Visualizzazione e unione dei due grafici affiancati
-
-p1 + p2    # 05_barre_percentuali.png
 
 # 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
 # Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
@@ -130,25 +124,14 @@ p1 + p2    # 05_barre_percentuali.png
 # na.rm = TRUE garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
 
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
+names(eterogeneita_ago) <- "Eterogeneita"
 
 # 8. VISUALIZZAZIONE AVANZATA CON GGPLOT2
-# Per utilizzare ggplot2 dobbiamo convertire il formato spaziale 'SpatRaster' in un comune dataframe. 
-# xy = TRUE estrae esplicitamente le coordinate geografiche (Longitudine e Latitudine) di ogni pixel. 
-# na.rm = TRUE elimina i record vuoti per alleggerire la memoria del dataset.
-# Trasformiamo in dataframe per fare un grafico elegante con ggplot2
-
-df_het <- as.data.frame(eterogeneita_ago, xy=TRUE, na.rm=TRUE)
-
-# Rinominiamo le colonne del dataframe per assegnare le variabili a ggplot
-
-colnames(df_het) <- c("x", "y", "Eterogeneita")
-
-# Generiamo la mappa finale con la sintassi formale di ggplot2
-
-ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
-  geom_raster() +
-  scale_fill_viridis_c(option = "inferno") +
-  labs(title="Eterogeneità Spaziale del Pascolo Alpino in Estate",
-       subtitle="Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
-       x="Longitudine", y="Latitudine") +
+ggplot() +
+  geom_spatraster(data = eterogeneita_ago, aes(fill = Eterogeneita)) +
+  scale_fill_viridis_c(option = "inferno", na.value = "transparent") +
+  labs(title = "Eterogeneità Spaziale del Pascolo Alpino in Estate",
+       subtitle = "Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
+       x = "Longitudine", y = "Latitudine",
+       fill = "Deviazione\nStandard") +
   theme_minimal()    # 03_eterogeneita_ggplot.png

@@ -127,7 +127,10 @@ p1 + p2
 ### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE CON FINESTRA MOBILE 3x3
 ```r
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
+```
 
+### 8. VISUALIZZAZIONE TRAMITE PLOT CARTOGRAFICO
+```r
 # Conversione del raster in dataframe per ggplot
 df_het <- as.data.frame(eterogeneita_ago, xy=TRUE, na.rm=TRUE)
 colnames(df_het) <- c("x", "y", "Eterogeneita")

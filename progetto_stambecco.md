@@ -164,7 +164,8 @@ Confronto delle frequenze dei pixel di NDVI, evidenziando lo shift e la ristrutt
 ### 4. Grafico di Copertura Percentuale Estratta
 Come evidenziato dall'elaborazione statistica ggplot2, la ripartizione del territorio mostra un incremento netto del pascolo sano nel mese estivo dovuto alla deglaciazione delle vette:
 
-<img width="1536" height="738" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/cb23114d-0516-47b6-9804-fa5750f37afd" />
+<img width="1536" height="715" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/185356c5-a741-4fa2-846d-72ec0049eb6b" />
+
 
 ### 5. Mappa Finale dell'Eterogeneità Spaziale
 Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):

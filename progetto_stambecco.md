@@ -41,7 +41,7 @@ Dove $x_i$ rappresenta il valore di NDVI del singolo pixel all'interno della fin
 
 ---
 
-## 💻 Codice R
+## 💻 Codice R DA RIVEDERE
 Il seguente script contiene l'intero lavoro commentato.
 
 ### 1. Caricamento delle librerie necessarie
@@ -187,7 +187,7 @@ La riclassificazione computerizzata ha prodotto i seguenti risultati percentuali
 
 ---
 
-## 📈 Discussione e conclusioni ecologiche
+## 📈 Discussione e conclusioni ecologiche NON MI PIACE
 
 L'applicazione del telerilevamento satellitare multitemporale, unita all'integrazione di metriche di classificazione d'immagine e analisi statistica locale, ha permesso di mappare quantitativamente le dinamiche eco-fenologiche nel Passo Falzarego. I risultati ottenuti non solo risolvono un apparente paradosso numerico, ma forniscono la chiave di lettura spaziale e matematica per comprendere l'ecologia del comportamento e le strategie di sopravvivenza dello Stambecco Alpino (*Capra ibex*).
 

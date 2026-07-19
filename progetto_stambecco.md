@@ -49,7 +49,6 @@ Il seguente script contiene l'intero lavoro commentato.
 library(terra)      # Gestione dei dati raster geografici
 library(ggplot2)    # Visualizzazione grafica avanzata e mappatura
 library(viridis)    # Palette cromatiche percettivamente uniformi
-library(rasterdiv)  # Calcolo dell'eterogeneità spaziale 
 library(imageRy)    # Database con dati e funzioni del corso
 library(patchwork)  # Assemblaggio grafico multiframe per ggplot2
 ```
@@ -79,8 +78,8 @@ plot(diff_estate_primavera, col=magma(100),
 ### 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
 ```r
 im.multiframe(1, 2)
-hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI")
-hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI")
+hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
+hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
 dev.off() # Reset del pannello grafico
 ```
 

@@ -86,9 +86,9 @@ dev.off() # Reset del pannello grafico
 ### 5. RICLASSIFICAZIONE IN CLASSI ESTRATTE E CALCOLO DELLE PERCENTUALI
 ```r
 # Definizione delle matrici di soglia ecologica
-matrice_classi <- matrix(c(-Inf, 0.2, 1, 
-                           0.2, 0.5, 2, 
-                           0.5, Inf, 3), ncol = 3, byrow = TRUE)
+matrice_classi <- matrix(c(-Inf, 0.2, 1,                              # Classe 1 (< 0.2): Roccia nuda / Suolo nudo
+                           0.2, 0.5, 2,                               # Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
+                           0.5, Inf, 3), ncol = 3, byrow = TRUE)      # Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
 
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
@@ -99,10 +99,14 @@ perc_ago <- freq(classi_ago)$count * 100 / ncell(classi_ago)
 
 # Costruzione del dataframe per l'analisi statistica quantitativa
 tabella_esame <- data.frame(
-  Stato_Pascolo = c("Pascolo Degradato", "Pascolo Sano", "Roccia/Suolo Nudo"),
+  Stato_Pascolo = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
   Maggio_Perc = round(perc_mag, 2),
   Agosto_Perc = round(perc_ago, 2)
 )
+# Facciamo in modo che ggplot2 mantenga questo ordine logico-ecologico sull'asse X
+tabella_esame$Stato_Pascolo <- factor(tabella_esame$Stato_Pascolo, 
+                                      levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"))
+# Tabella 
 print(tabella_esame)
 ```
 

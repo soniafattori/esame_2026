@@ -180,11 +180,11 @@ Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione e
 ## 🔢 Analisi Quantitativa ed Estrazione dei Dati
 La riclassificazione computerizzata ha prodotto i seguenti risultati percentuali relativi alla ripartizione del territorio nelle due stagioni chiave:
 
-| Stato del Pascolo Alpino | Copertura Maggio (%) | Copertura Agosto (%) | Variazione Netta (%) |
-| :--- | :---: | :---: | :---: |
-| **Pascolo Degradato / Stressato** | ~23% | ~11% | -12% |
-| **Roccia / Suolo Nudo** | ~22% | ~11% | -11% |
-| **Pascolo Sano / Rigoglioso** | **~51%** | **~75%** | **+24%** |
+Stato_Pascolo Maggio_Perc Agosto_Perc
+1 Roccia/Suolo Nudo       21.95        9.83
+2 Pascolo Degradato       22.47       10.07
+3      Pascolo Sano       50.76       75.27
+
 
 ---
 

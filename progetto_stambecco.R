@@ -1,10 +1,10 @@
-# 1. Installazione pacchetti e caricamento librerie
+# 1. INSTALLAZIONE PACCHETTI E CARICAMENTO LIBRERIE
 
 install.packages("terra")                 # Gestione dei dati raster geografici
 install.packages("tidyterra")             # Integrazione nativa di oggetti SpatRaster in ggplot2
-install.packages("ggplot2")               # Utilizzato per la visualizzazione grafica avanzata e la mappatura
+install.packages("ggplot2")               # Visualizzazione grafica avanzata e la mappatura
 install.packages("viridis")               # Palette di colori per l'accessibilità visiva
-install_github("ducciorocchini/imageRy")  # Repository di dati e funzioni didattiche del corso
+install_github("ducciorocchini/imageRy")  # Repository di dati e funzioni del corso
 install.packages("patchwork")             # Necessario per affiancare grafici ggplot2 diversi
 
 library(terra)
@@ -14,8 +14,8 @@ library(viridis)
 library(imageRy)
 library(patchwork)
 
-# 2. IMPORTAZIONE E STACKING DEI DATI SATELITARI (SENTINEL-2) 
-# Visualizziamo la lista dei dataset interni disponibili nel pacchetto per verifica
+# 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (SENTINEL-2 - Passo Falzarego) 
+# Visualizziamo la lista dei dataset interni disponibili nel pacchetto
 
 im.list()
 
@@ -40,24 +40,24 @@ names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 
 plot(punti_stagionali, col=viridis(100))   # 01_serie_stagionale.png
 
-# 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (FALZAREGO STRESS) 
+# 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO) 
 # Applichiamo un'operazione di algebra dei raster sottraendo il pixel primaverile da quello estivo. 
 # Obiettivo: Evidenziare quantitativamente il viraggio o il disseccamento del pascolo.
 
 diff_estate_primavera <- ndvi_ago - ndvi_mag
 
-# Plottiamo la differenza per vedere dove la vegetazione è aumentata o diminuita, I valori negativi indicano una perdita di vigoria vegetativa (NDVI diminuito da Maggio ad Agosto)
+# Plottiamo la differenza per vedere dove la vegetazione è aumentata o diminuita: I valori negativi indicano una perdita di vigoria vegetativa (NDVI diminuito da Maggio ad Agosto)
 # Usiamo una mappa di colore divergente (magma) per evidenziare i contrasti
 
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")   # 02_differenza_ndvi.png
 
-# 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE (ISTOGRAMMI)
+# 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
 # Generiamo un pannello con due istogrammi per osservare lo shift matematico dei pixel
 
 im.multiframe(1, 2)
-hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
-hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000     # 04_istogrammi_confronto.png
+hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000
+hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000     # 04_istogrammi_confronto.png
 
 # Reset del pannello grafico
 
@@ -78,7 +78,7 @@ matrice_classi <- matrix(c(-Inf, 0.2, 1,
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
 
-# Estrazione sicura delle frequenze (Metodo robusto per terra)
+# Estrazione delle frequenze
 f_mag <- freq(classi_mag)
 f_ago <- freq(classi_ago)
 

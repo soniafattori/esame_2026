@@ -312,8 +312,8 @@ Le linee arancione/giallo tracciano i contorni netti tra pareti rocciose e prate
 
 ---
 
-## 🔢 Analisi Quantitativa ed Estrazione dei Dati
-La riclassificazione computerizzata ha prodotto i seguenti risultati percentuali relativi alla ripartizione del territorio nelle due stagioni chiave:
+## 🔢 Tabella delle coperture stagionali
+La tabella seguente riporta la ripartizione percentuale del territorio del Passo Falzarego nelle tre classi di vigoria vegetativa: 
 
 | Stato Pascolo | Maggio (%) | Agosto (%) |
 | :--- | :---: | :---: |
@@ -321,6 +321,20 @@ La riclassificazione computerizzata ha prodotto i seguenti risultati percentuali
 | **Pascolo Degradato** | 23.61 | 10.58 |
 | **Pascolo Sano** | 53.33 | 79.09 |
 | **Totale** | 100.00 | 100.00 |
+
+#### 📈 Analisi dei Risultati Quantitativi
+
+Dall'estrazione dei dati di riclassificazione emergono tre dinamiche principali:
+
+* **Forte espansione del Pascolo Sano (+25.8%):** Rappresenta la variazione di maggiore impatto. Con l'innalzamento termico e il completamento del ciclo vegetativo, quasi i quattro quinti dell'intero territorio ($79.1\%$) raggiungono condizioni di elevata vigoria e densità fotosintetica ($\text{NDVI} > 0.5$).
+* **Dimezzamento delle superfici prive di vegetazione (-12.8%):** La quota di territorio classificata come *Roccia / Suolo Nudo* scende dal $23.1\%$ di maggio al $10.3\%$ di agosto, come conseguenza diretta della fusione del manto nevoso residuo ad alta quota.
+* **Maturazione del Pascolo Degradato (-13.0%):** Le aree a vegetazione rada o in fase iniziale di crescita si riducono dal $23.6\%$ al $10.6\%$. Tale contrazione è dovuta alla transizione di queste praterie verso la classe a massima biomassa (*Pascolo Sano*).
+
+---
+
+#### 💡 Sintesi Ecologica
+
+Tra maggio e agosto si assiste a una netta **omogeneizzazione verso l'alto della qualità del pascolo**. La combinazione di disgelo e stabilità termica estiva converta oltre un quarto del paesaggio analizzato ($+25.8\%$) da superfici scoperte o a bassa biomassa in prateria alpina ad alto valore nutrizionale.
 
 ---
 

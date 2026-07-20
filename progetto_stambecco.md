@@ -41,7 +41,7 @@ Dove $x_i$ rappresenta il valore di NDVI del singolo pixel all'interno della fin
 
 ---
 
-## 💻 Codice R DA RIVEDERE
+## 💻 Codice R 
 Il seguente script contiene l'intero lavoro commentato.
 
 ### 1. CARICAMENTO DELLE LIBRERIE NECESSARIE
@@ -287,10 +287,28 @@ Il grafico a barre seguente mostra la variazione percentuale delle tre classi ec
   * Passa da circa il **53-54%** a Maggio a quasi l'**80%** ad Agosto.
   * Questo incremento netto dimostra quantitativamente la risposta della prateria alpina all'innalzamento termico estivo e alla disponibilità di luce, che porta quasi i quattro quinti dell'area ad alte prestazioni fotosintetiche.
 
-### 5. Mappa Finale dell'Eterogeneità Spaziale
-Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):
+### 5. Eterogeneità spaziale dell'NDVI e analisi di frammentazione dell'habitat estivo per lo Stambecco (*Capra ibex*) nelle Dolomiti
+La mappa seguente mostra la distribuzione dell'eterogeneità spaziale dell'NDVI, calcolata come Deviazione Standard locale tramite una finestra mobile focalizzata (focal/focal statistical analysis) durante il periodo estivo. L'analisi identifica la frammentazione del paesaggio e i margini di transizione nell'habitat dello stambecco:
 
 <img width="1136" height="470" alt="03_eterogeneita_ggplot" src="https://github.com/user-attachments/assets/7b812826-0a02-421b-b809-c017a39198dd" />
+
+---
+
+La scala cromatica (palette *Inferno*) misura la variabilità locale dei valori di NDVI tra pixel adiacenti:
+
+* **Tonalità Scure / Viola scuro e Nero (Bassa Deviazione Standard, $< 0.1$):** Indicano zone omogenee. Si tratta di aree uniformi dove i pixel vicini hanno valori di NDVI quasi identici:
+  * Praterie contigue e dense al picco di biomassa (NDVI uniformemente alto).
+  * Pareti rocciose o corpi d'acqua interni (NDVI uniformemente basso/nullo).
+* **Tonalità Intermedie / Viola-Rosa e Magenta ($\approx 0.15$ a $0.25$):** Rappresentano zone a moderata variabilità, tipiche dei pascoli sparsi, dei conoidi di deiezione o dei margini tra vegetazione e roccia.
+* **Tonalità Chiare / Arancione e Giallo brillante (Alta Deviazione Standard, $> 0.3$):** Evidenziano forti discontinuità spaziali e zone di ecotono (margini netti):
+  * Il bordo del lago/bacino in alto a sinistra (netta transizione acqua-vegetazione).
+  * I crestali, le scarpate e i canaloni rocciosi dove la roccia nuda si alterna a chiazze isolate di vegetazione alpina.
+
+---
+
+#### 📊 Commento Ecologico e Applicativo (Habitat dello Stambecco)
+
+Le linee arancione/giallo tracciano i contorni netti tra pareti rocciose e praterie, evidenziando i margini di ecotono ad elevata eterogeneità spaziale. In estate, gli stambecchi prediligono proprio queste fasce di transizione: la diretta vicinanza tra le scarpate scoscese (usate come rifugio anti-predatorio) e il pascolo adiacente garantisce il bilanciamento ottimale tra alimentazione e sicurezza. Al contrario, le aree omogenee in viola scuro indicano ambienti meno idonei, poiché costituiti da soli pascoli aperti e privi di riparo o da pareti rocciose prive di risorse trofiche.
 
 ---
 

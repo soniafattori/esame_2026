@@ -340,40 +340,5 @@ Tra maggio e agosto si assiste a una netta **omogeneizzazione verso l'alto della
 
 ## 📈 Discussione e Conclusioni Ecologiche
 
-L'applicazione del telerilevamento satellitare multitemporale, unita all'integrazione di metriche di riclassificazione e di analisi spaziale focalizzata, ha permesso di mappare quantitativamente le dinamiche eco-fenologiche nel Passo Falzarego. I risultati ottenuti forniscono la chiave di lettura spettrale e matematica per comprendere le strategie di sopravvivenza e l'ecologia del comportamento dello Stambecco alpino (*Capra ibex*).
-
----
-
-### 1. Il Fenomeno della "Green Wave" Ritardata ad Alta Quota
-
-L'analisi quantitativa delle frequenze spettrali ed estrazione dei dati evidenzia un pattern macro-ecologico tipico degli ambienti di alta montagna: **la classe *Pascolo Sano* ($\text{NDVI} > 0.5$) subisce una forte espansione, passando dal $53.3\%$ di maggio al $79.1\%$ di agosto**. Questo trend si contrappone nettamente alle dinamiche degli ecosistemi di pianura o medilitoranei, dove la stagione estiva coincide con un disseccamento generalizzato della copertura vegetale.
-
-Nelle Dolomiti, la fenologia della vegetazione è strettamente regolata dalla criosfera. Nel mese di maggio, ampie porzioni del Passo Falzarego (in particolare i versanti esposti a nord, i canaloni e le conche sommitali oltre i $2100\text{ m}$) si trovano ancora in dormienza o risultano coperte da nevai stagionali. Ciò si traduce nei dati spettrali con percentuali rilevanti di *Roccia / Suolo Nudo* ($23.1\%$) e *Pascolo Degradato* ($23.6\%$). Ad agosto, il completo disgelo e l'incremento dell'irraggiamento solare innescano una risposta vegetativa tardiva e impulsiva (*delayed green wave*). Tale risveglio riduce le superfici abiotiche o poco produttive al $10.3\%$ e $10.6\%$, convertendo gran parte del paesaggio in una prateria alpina continua e ad alta densità fotosintetica.
-
----
-
-### 2. Migrazione Verticale ed Asincronia Trofica dell'Erbivoro
-
-Sebbene l'estensione complessiva del pascolo ad alta vigoria aumenti a scala di matrice paesaggistica, la mappa di variazione differenziale ($\Delta\text{NDVI}$) svela un'elevata eterogeneità spaziale. Nei fondovalle a quota inferiore si registrano locali decrementi o stazionarietà dell'indice, sintomo di un precoce stress idrico o dell'avvio della fase di senescenza fogliare. Al contrario, i valori fortemente positivi dell'incremento dell'NDVI si concentrano lungo i versanti superiori e le fasce altitudinali elevate.
-
-Per lo Stambecco alpino, questa asincronia rappresenta il fattore guida della **migrazione verticale estiva**. *Capra ibex* è un grande erbivoro termosensibile che manifesta stress metabolico a temperature ambientali superiori ai $15\text{ }^\circ\text{C}$. La risalita verso le quote maggiori ad agosto risponde a un duplice requisito di sopravvivenza:
-
-* **Inseguimento del picco nutrizionale:** L'animale abbandona i pascoli di quota inferiore, ormai lignificati e meno digeribili, spostandosi verso l'alto per intercettare la prateria alpina in fase di accrescimento, ricca di tessuti giovani ad alto contenuto proteico.
-* **Mantenimento del comfort termico:** La frequentazione dei crinali elevati e delle pareti ventilate consente all'animale di ridurre i costi energetici legati alla termoregolazione diurna.
-
----
-
-### 3. Eterogeneità Spaziale come Nicchia di Rifugio e Sicurezza
-
-La mappa dell'eterogeneità spaziale, calcolata mediante Deviazione Standard locale su finestra mobile $3 \times 3$, dimostra come i picchi di variabilità strutturale (evidenziati dalle tonalità chiare nella palette *Inferno*) ricalchino con precisione gli ecotoni geomorfologici. Si tratta delle fasce di transizione in cui la prateria si interfaccia direttamente con pareti rocciose scoscese, conoidi e detriti di falda.
-
-In ottica comportamentale, questi contesti ad alta eterogeneità costituiscono l'habitat estivo di elezione per lo stambecco, garantendo la coesistenza di due esigenze fondamentali:
-
-* **Strategia anti-predatoria:** La diretta adiacenza con le pareti rocciose verticali offre vie di fuga immediate e riparo da predatori (come il lupo), oltre a microambienti ombreggiati per la sosta nelle ore più calde.
-* **Pascolamento di precisione:** Le nicchie erbose incastrate tra le rocce beneficiano del rilascio di umidità dai nevai perenni, mantenendo un'elevata qualità nutrizionale e consentendo all'animale di alimentarsi senza doversi esporre in aree aperte e vulnerabili a quota inferiore.
-
----
-
-### 4. Applicazioni del Telerilevamento nella Conservazione della Fauna
-
-In conclusione, l'integrazione di indici spettrali ($\text{NDVI}$), matrice di riclassificazione quantitativa e metriche di variabilità spaziale (*focal standard deviation*) si conferma uno strumento diagnostico essenziale per la biologia della conservazione. Nell'attuale contesto di cambiamento climatico, l'anticipo del disgelo rischia di alterare la sincronia della *green wave*, riducendo la finestra temporale di alimentazione ottimale per gli ungulati d'alta quota (*mismatch fenologico*). Il telerilevamento open-source offre quindi un supporto decisivo per la pianificazione e la tutela degli habitat montani fragili.
+L’analisi satellitari multitemporale ha permesso di mappare con precisione le dinamiche ambientali al Passo Falzarego, fornendo chiavi di lettura fondamentali per comprendere l'ecologia dello **Stambecco alpino** (*Capra ibex*). A differenza delle zone di pianura, in alta montagna l'estate non porta secchezza ma innesca un **risveglio vegetazionale tardivo**: tra maggio e agosto, con lo scioglimento della neve, la copertura a pascolo sano cresce dal 53,3% al 79,1%, riducendo le superfici rocciose e improduttive a poco più del 10%. Questa asincronia della vegetazione guida la migrazione estiva dello stambecco verso le quote elevate per un duplice motivo: da un lato l'animale segue la crescita di erba fresca ad alto valore nutrizionale, dall'altro evita lo stress termico (che insorge sopra i 15 °C) cercando il refrigerio dei crinali ventilati. L'analisi della variabilità spaziale (Deviazione Standard) dimostra inoltre che l'habitat di elezione dell'erbivoro si concentra negli ecotoni, ossia dove le praterie incontrano le pareti rocciose. Queste fasce di transizione garantiscono sia una via di fuga immediata dai predatori sia nicchie di pascolo di alta qualità, mantenute fresche dall'umidità residua del disgelo.
+In conclusione, il telerilevamento si conferma uno strumento indispensabile per la tutela della fauna alpina. Permette di monitorare la qualità dell'habitat su ampie superfici senza disturbare gli animali, fornendo dati preziosi per pianificare la gestione della specie di fronte ai cambiamenti climatici.

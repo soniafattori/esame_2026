@@ -1,6 +1,7 @@
 # Analisi multitemporale della fenologia del pascolo alpino: implicazioni ecologiche per lo stambecco (*Capra ibex*) nelle Dolomiti 🐐
 
 ## 📌 Introduzione e obiettivi ecologici
+
 Il cambiamento climatico sta provocando profonde alterazioni negli ecosistemi d'alta quota, modificando i ritmi stagionali della vegetazione. Questo progetto applica le tecniche di **Telerilevamento** per monitorare la dinamica temporale e la struttura spaziale dei pascoli montani nel **Passo Falzarego (Dolomiti)** nel corso dell'anno 2020, utilizzando i dati del satellite **Sentinel-2**.
 
 L'obiettivo ecologico è mappare lo stress vegetativo estivo e la frammentazione paesaggistica per comprendere i pattern di movimento dello **Stambecco Alpino (*Capra ibex*)**. Lo stambecco è un erbivoro d'alta quota fortemente condizionato dalla qualità nutrizionale del pascolo. L'aumento delle temperature estive causa un precoce disseccamento della vegetazione a quote medio-basse, costringendo la specie a una migrazione verticale verso nicchie di rifugio climatico ad altitudini elevate, dove la fusione tardiva della neve garantisce erba fresca e digeribile.
@@ -54,7 +55,6 @@ library(imageRy)    # Database con dati e funzioni del corso
 ```
 
 ### 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
-
 Visualizziamo la lista dei dataset interni disponibili nel pacchetto
 ```r
 im.list()
@@ -82,11 +82,13 @@ plot(punti_stagionali, col=viridis(100))
 ```
 
 ### 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
+Applichiamo un'operazione di algebra dei raster sottraendo il pixel primaverile da quello estivo per evidenziare quantitativamente il viraggio o il disseccamento del pascolo
 ```r
-# Applichiamo un'operazione di algebra dei raster sottraendo il pixel primaverile da quello estivo per evidenziare quantitativamente il viraggio o il disseccamento del pascolo
 diff_estate_primavera <- ndvi_ago - ndvi_mag
+```
 
-# Plottiamo la differenza per vedere dove la vegetazione è aumentata o diminuita
+Plottiamo la differenza per vedere dove la vegetazione è aumentata o diminuita
+```r
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")
 
@@ -94,44 +96,54 @@ plot(diff_estate_primavera, col=magma(100),
 ```
 
 ### 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
+Generiamo un pannello con due istogrammi per osservare lo shift matematico dei pixel
 ```r
-# Generiamo un pannello con due istogrammi per osservare lo shift matematico dei pixel
 im.multiframe(1, 2)
 hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000
 hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000
 
 # 04_istogrammi_confronto.png
+```
 
-# Reset del pannello grafico
+Reset del pannello grafico
+```r
 dev.off() # Reset del pannello grafico
 ```
 
 ### 5. RICLASSIFICAZIONE E CALCOLO DELLE PERCENTUALI DI COPERTURA
+Definiamo una matrice di riclassificazione basata su soglie ecologiche:
+- Classe 1 (< 0.2): Roccia nuda / Suolo nudo
+- Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
+- Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
 ```r
-# Definiamo una matrice di riclassificazione basata su soglie ecologiche:
-# Classe 1 (< 0.2): Roccia nuda / Suolo nudo
-# Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
-# Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
 matrice_classi <- matrix(c(-Inf, 0.2, 1,
                            0.2, 0.5, 2,
                            0.5, Inf, 3), ncol = 3, byrow = TRUE)
+```
 
-# Riclassifichiamo i raster di Maggio e Agosto
+Riclassifichiamo i raster di Maggio e Agosto
+```r
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
+```
 
-# Estraiamo le frequenze
+Estraiamo le frequenze
+```r
 f_mag <- freq(classi_mag)
 f_ago <- freq(classi_ago)
+```
 
-# Calcoliamo le percentuali escludendo i pixel NA dal totale
+Calcoliamo le percentuali escludendo i pixel NA dal totale
+```r
 tot_pixel_mag <- sum(f_mag$count)
 tot_pixel_ago <- sum(f_ago$count)
 
 perc_mag <- (f_mag$count / tot_pixel_mag) * 100
 perc_ago <- (f_ago$count / tot_pixel_ago) * 100
+```
 
-# Organizziamo i dati in un dataframe strutturato per la tabella e per ggplot2
+Organizziamo i dati in un dataframe strutturato per la tabella e per ggplot2
+```r
 tabella_esame <- data.frame(
   Stato_Pascolo = factor(c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
                          levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano")),
@@ -143,18 +155,22 @@ print(tabella_esame)
 ```
 
 ### 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
+Riorganizziamo il dataframe in formato "long" per facilitare il plotting
 ```r
-# Riorganizziamo il dataframe in formato "long" per facilitare il plotting
 tabella_long <- data.frame(
   Stato_Pascolo = rep(tabella_esame$Stato_Pascolo, 2),
   Mese = c(rep("Maggio", 3), rep("Agosto", 3)),
   Percentuale = c(tabella_esame$Maggio, tabella_esame$Agosto)
 )
+```
 
-# Inseriamo l'ordine cronologico (Maggio prima di Agosto)
+Inseriamo l'ordine cronologico (Maggio prima di Agosto)
+```r
 tabella_long$Mese <- factor(tabella_long$Mese, levels = c("Maggio", "Agosto"))
+```
 
-# Creiamo il rafico a barre raggruppate
+Creiamo il rafico a barre raggruppate
+```r
 ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_manual(values = c("darkgreen", "orange")) +
@@ -166,18 +182,18 @@ ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
 ```
 
 ### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
+Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
+w = matrix(1,3,3) definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
+fun = sd stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
+na.rm = TRUE garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
 ```r
-# Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
-# w = matrix(1,3,3) definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
-# fun = sd stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
-# na.rm = TRUE garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
 names(eterogeneita_ago) <- "Eterogeneita"
 ```
 
 ### 8. VISUALIZZAZIONE TRAMITE PLOT CARTOGRAFICO
+Creiamo la mappa di distribuzione dell'eterogeneità spaziale dell'NDVI
 ```r
-# Creiamo la mappa di distribuzione dell'eterogeneità spaziale dell'NDVI
 ggplot() +
   geom_spatraster(data = eterogeneita_ago, aes(fill = Eterogeneita)) +
   scale_fill_viridis_c(option = "inferno", na.value = "transparent") +

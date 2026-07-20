@@ -1,6 +1,6 @@
-# Analisi Multitemporale della fenologia del pascolo alpino: implicazioni ecologiche per lo stambecco (*Capra ibex*) nelle Dolomiti 🐐
+# Analisi multitemporale della fenologia del pascolo alpino: implicazioni ecologiche per lo stambecco (*Capra ibex*) nelle Dolomiti 🐐
 
-## 📌 Introduzione e Obiettivi Ecologici
+## 📌 Introduzione e obiettivi ecologici
 Il cambiamento climatico sta provocando profonde alterazioni negli ecosistemi d'alta quota, modificando i ritmi stagionali della vegetazione. Questo progetto applica le tecniche di **Telerilevamento** per monitorare la dinamica temporale e la struttura spaziale dei pascoli montani nel **Passo Falzarego (Dolomiti)** nel corso dell'anno 2020, utilizzando i dati del satellite **Sentinel-2**.
 
 L'obiettivo ecologico è mappare lo stress vegetativo estivo e la frammentazione paesaggistica per comprendere i pattern di movimento dello **Stambecco Alpino (*Capra ibex*)**. Lo stambecco è un erbivoro d'alta quota fortemente condizionato dalla qualità nutrizionale del pascolo. L'aumento delle temperature estive causa un precoce disseccamento della vegetazione a quote medio-basse, costringendo la specie a una migrazione verticale verso nicchie di rifugio climatico ad altitudini elevate, dove la fusione tardiva della neve garantisce erba fresca e digeribile.
@@ -9,31 +9,31 @@ L'obiettivo ecologico è mappare lo stress vegetativo estivo e la frammentazione
 
 ---
 
-## 🔬 Metodi e Formulazione Matematica
+## 🔬 Metodi e formulazione matematica
 
-### 1. Indice di Vegetazione (NDVI)
+### 1. Indice di vegetazione (NDVI)
 Per quantificare la biomassa e lo stato di salute della vegetazione nelle quattro stagioni, è stato utilizzato l'**NDVI (Normalized Difference Vegetation Index)**. L'indice sfrutta il comportamento spettrale delle foglie clorofilliane, che assorbono fortemente la radiazione nel rosso ($RED$) e riflettono quella nel vicino infrarosso ($NIR$):
 
 $$NDVI = \frac{NIR - RED}{NIR + RED}$$
 
 L'indice varia tra $-1$ e $+1$. Valori prossimi allo zero o negativi indicano superfici prive di vegetazione (neve, roccia nuda), mentre valori prossimi a $+1$ indicano massima vigoria vegetativa.
 
-### 2. Algebra dei Raster (Rilevamento del Cambiamento)
-Per misurare l'intensità del deperimento estivo del pascolo rispetto al picco primaverile, è stata applicata un'operazione di algebra dei raster sottrattiva tra il mese di Agosto ($NDVI_{ago}$) e il mese di Maggio ($NDVI_{mag}$):
+### 2. Algebra dei raster
+Per misurare l'intensità del deperimento estivo del pascolo rispetto al picco primaverile, è stata applicata un'operazione di algebra dei raster di sottrazione tra il mese di Agosto ($NDVI_{ago}$) e il mese di Maggio ($NDVI_{mag}$):
 
 $$\Delta NDVI = NDVI_{ago} - NDVI_{mag}$$
 
 * Valori **negativi** indicano aree soggette a senescenza o stress idrico (perdita di vigoria).
 * Valori **positivi** indicano un incremento della biomassa fogliare.
 
-### 3. Classificazione Ecologica del Territorio
-Al fine di quantificare la risorsa trofica disponibile, i pixel continui di NDVI sono stati discretizzati in classi discrete tramite una funzione di riclassificazione a matrice basata su tre soglie ecologiche:
+### 3. Classificazione ecologica del territorio
+Per quantificare le risorse trofiche disponibili, i valori continui di NDVI sono stati suddivisi in tre classi ecologiche distinte tramite una matrice di riclassificazione:
 * **Classe 1 (Roccia nuda / Suolo nudo):** NDVI < 0.2 (aree rocciose, detriti o neve residua).
 * **Classe 2 (Pascolo degradato / Stressato):** 0.2 ≤ NDVI < 0.5 (vegetazione rada o in fase di stress idrico).
 * **Classe 3 (Pascolo sano / Rigoglioso):** NDVI ≥ 0.5 (prateria alpina al picco della vigoria e biomassa).
 
-### 4. Eterogeneità Spaziale (Standard Deviation)
-L'eterogeneità spaziale dell'habitat è stata calcolata applicando una funzione a **finestra mobile (*moving window*)** di dimensioni $3 \times 3$ pixel sull'NDVI estivo. Come metrica di diversità paesaggistica locale è stata computata la **Deviazione Standard ($SD$)**:
+### 4. Eterogeneità spaziale (deviazione standard)
+L'eterogeneità dell'habitat è stata stimata calcolando la Deviazione Standard ($SD$) dell'NDVI estivo mediante una finestra mobile (moving window) di $3 \times 3$ pixel:
 
 $$SD = \sqrt{\frac{\sum_{i=1}^{N}(x_i - \bar{x})^2}{N}}$$
 

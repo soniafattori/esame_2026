@@ -44,17 +44,18 @@ Dove $x_i$ rappresenta il valore di NDVI del singolo pixel all'interno della fin
 ## 💻 Codice R DA RIVEDERE
 Il seguente script contiene l'intero lavoro commentato.
 
-### 1. Caricamento delle librerie necessarie
+### 1. CARICAMENTO DELLE LIBRERIE NECESSARIE
 ```r
 library(terra)      # Gestione dei dati raster geografici
+library(tidyterra)  # Integrazione nativa di oggetti SpatRaster in ggplot2
 library(ggplot2)    # Visualizzazione grafica avanzata e mappatura
-library(viridis)    # Palette cromatiche percettivamente uniformi
+library(viridis)    # Palette di colori per l'accessibilità visiva
 library(imageRy)    # Database con dati e funzioni del corso
-library(patchwork)  # Assemblaggio grafico multiframe per ggplot2
 ```
 
 ### 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
 ```r
+# Importiamo i file raster (mappe) dell'NDVI del 2020 relativi al Passo Falzarego (Dolomiti)
 ndvi_feb <- im.import("Sentinel2_NDVI_2020-02-21.tif") # Inverno (Dormienza/Neve)
 ndvi_mag <- im.import("Sentinel2_NDVI_2020-05-21.tif") # Primavera (Greening)
 ndvi_ago <- im.import("Sentinel2_NDVI_2020-08-01.tif") # Estate (Picco/Siccità)
@@ -64,85 +65,112 @@ ndvi_nov <- im.import("Sentinel2_NDVI_2020-11-27.tif") # Autunno (Senescenza)
 punti_stagionali <- c(ndvi_feb, ndvi_mag, ndvi_ago, ndvi_nov)
 names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 
-# Visualizzazione della serie fenologica stagionale
+# Visualizzazione della serie temporale completa con lapette viridis
 plot(punti_stagionali, col=viridis(100))
+
+# 01_serie_stagionale.png
 ```
 
 ### 3. ALGEBRA DEI RASTER: MAPPA DI DIFFERENZA (CAMBIAMENTO ESTIVO)
 ```r
+# Applichiamo un'operazione di algebra dei raster sottraendo il pixel primaverile da quello estivo per evidenziare quantitativamente il viraggio o il disseccamento del pascolo
 diff_estate_primavera <- ndvi_ago - ndvi_mag
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")
+
+# 02_differenza_ndvi.png
 ```
 
 ### 4. ANALISI DELLA DISTRIBUZIONE SPETTRALE TRAMITE ISTOGRAMMI
 ```r
+# Generiamo un pannello con due istogrammi per osservare lo shift matematico dei pixel
 im.multiframe(1, 2)
-hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
-hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # <--- Blocca il limite da 0 a 65.000
+hist(ndvi_mag, main = "Distribuzione NDVI Maggio", col = "darkgreen", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000
+hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valori NDVI", ylim = c(0, 65000)) # Blocca il limite da 0 a 65.000
+
+# 04_istogrammi_confronto.png
+
 dev.off() # Reset del pannello grafico
 ```
 
-### 5. RICLASSIFICAZIONE IN CLASSI ESTRATTE E CALCOLO DELLE PERCENTUALI
+### 5. RICLASSIFICAZIONE E CALCOLO DELLE PERCENTUALI DI COPERTURA
 ```r
 # Definizione delle matrici di soglia ecologica
 matrice_classi <- matrix(c(-Inf, 0.2, 1,                              # Classe 1 (< 0.2): Roccia nuda / Suolo nudo
                            0.2, 0.5, 2,                               # Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
                            0.5, Inf, 3), ncol = 3, byrow = TRUE)      # Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
 
+# Riclassificazione dei raster di Maggio e Agosto
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
 
-# Computazione delle frequenze relative percentuali
-perc_mag <- freq(classi_mag)$count * 100 / ncell(classi_mag)
-perc_ago <- freq(classi_ago)$count * 100 / ncell(classi_ago)
+# Estrazione delle frequenze
+f_mag <- freq(classi_mag)
+f_ago <- freq(classi_ago)
 
-# Costruzione del dataframe per l'analisi statistica quantitativa
+# Calcolo delle percentuali escludendo i pixel NA dal totale
+tot_pixel_mag <- sum(f_mag$count)
+tot_pixel_ago <- sum(f_ago$count)
+
+perc_mag <- (f_mag$count / tot_pixel_mag) * 100
+perc_ago <- (f_ago$count / tot_pixel_ago) * 100
+
+# Organizziamo i dati in un dataframe strutturato per la tabella e per ggplot2
 tabella_esame <- data.frame(
-  Stato_Pascolo = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
-  Maggio_Perc = round(perc_mag, 2),
-  Agosto_Perc = round(perc_ago, 2)
+  Stato_Pascolo = factor(c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"),
+                         levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano")),
+  Maggio = round(perc_mag, 2),
+  Agosto = round(perc_ago, 2)
 )
-# Facciamo in modo che ggplot2 mantenga questo ordine logico-ecologico sull'asse X
-tabella_esame$Stato_Pascolo <- factor(tabella_esame$Stato_Pascolo, 
-                                      levels = c("Roccia/Suolo Nudo", "Pascolo Degradato", "Pascolo Sano"))
-# Tabella 
+
 print(tabella_esame)
 ```
 
 ### 6. GENERAZIONE DEI GRAFICI COMPARATIVI CON GGPLOT2
 ```r
-p1 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Maggio_Perc, fill = Stato_Pascolo)) +    
-  geom_bar(stat = "identity") + scale_fill_viridis_d(option = "viridis") + ylim(0, 100) +
-  labs(title = "Copertura a Maggio (Primavera)", y = "Percentuale (%)", x = NULL) + 
-  theme_minimal() + theme(legend.position = "none")
+# Riorganizziamo il dataframe in formato "long" per facilitare il plotting
+tabella_long <- data.frame(
+  Stato_Pascolo = rep(tabella_esame$Stato_Pascolo, 2),
+  Mese = c(rep("Maggio", 3), rep("Agosto", 3)),
+  Percentuale = c(tabella_esame$Maggio, tabella_esame$Agosto)
+)
 
-p2 <- ggplot(tabella_esame, aes(x = Stato_Pascolo, y = Agosto_Perc, fill = Stato_Pascolo)) +
-  geom_bar(stat = "identity") + scale_fill_viridis_d(option = "viridis") + ylim(0, 100) +
-  labs(title = "Copertura ad Agosto (Estate)", y = "%", x = NULL) + theme_minimal()
+# Inseriamo l'ordine cronologico (Maggio prima di Agosto)
+tabella_long$Mese <- factor(tabella_long$Mese, levels = c("Maggio", "Agosto"))
 
-p1 + p2
+# Grafico a barre raggruppate
+ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("darkgreen", "orange")) +
+  labs(title = "Evoluzione delle Classi di Pascolo al Passo Falzarego",
+       x = "Tipologia di Copertura", y = "Percentuale sul totale (%)") +
+  theme_minimal()
+
+#05_barre_percentuali.png
 ```
 
-### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE CON FINESTRA MOBILE 3x3
+### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
 ```r
+# Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
+# w = matrix(1,3,3) definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
+# fun = sd stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
+# na.rm = TRUE garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
+names(eterogeneita_ago) <- "Eterogeneita"
 ```
 
 ### 8. VISUALIZZAZIONE TRAMITE PLOT CARTOGRAFICO
 ```r
-# Conversione del raster in dataframe per ggplot
-df_het <- as.data.frame(eterogeneita_ago, xy=TRUE, na.rm=TRUE)
-colnames(df_het) <- c("x", "y", "Eterogeneita")
-
-# Generazione del plot cartografico
-ggplot(df_het, aes(x=x, y=y, fill=Eterogeneita)) +
-  geom_raster() +
-  scale_fill_viridis_c(option = "inferno") +
-  labs(title="Eterogeneità Spaziale del Pascolo Alpino in Estate",
-       subtitle="Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
-       x="Longitudine", y="Latitudine") +
+ggplot() +
+  geom_spatraster(data = eterogeneita_ago, aes(fill = Eterogeneita)) +
+  scale_fill_viridis_c(option = "inferno", na.value = "transparent") +
+  labs(title = "Eterogeneità Spaziale del Pascolo Alpino in Estate",
+       subtitle = "Analisi di frammentazione dell'habitat per lo Stambecco (Dolomiti)",
+       x = "Longitudine", y = "Latitudine",
+       fill = "Deviazione\nStandard") +
   theme_minimal()
+
+# 03_eterogeneita_ggplot.png
 ```
 
 ---

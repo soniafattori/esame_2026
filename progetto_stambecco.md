@@ -256,10 +256,36 @@ I due istogrammi seguenti mostrano la distribuzione di frequenza dei pixel per l
 
 * **Sintesi Ecologica:** Il confronto evidenzia quantitativamente la transizione della prateria da una fase eterogenea e parzialmente dormiente a Maggio verso una fase di omogeneità ad elevata attività fotosintetica ad Agosto.
 
-### 4. Grafico di Copertura Percentuale Estratta
-Come evidenziato dall'elaborazione statistica ggplot2, la ripartizione del territorio mostra un incremento netto del pascolo sano nel mese estivo dovuto alla deglaciazione delle vette:
+### 4. Confronto percentuale delle classi di pascolo (Maggio vs Agosto)
+Il grafico a barre seguente mostra la variazione percentuale delle tre classi ecologiche di copertura del suolo riclassificate a partire dai valori NDVI, mettendo a confronto il periodo primaverile (Maggio) e quello estivo (Agosto):
 
 <img width="1536" height="715" alt="05_barre_percentuali" src="https://github.com/user-attachments/assets/09857ac9-e611-483f-8f4c-da1b8615dee0" />
+
+---
+
+* **Asse delle Ascisse (X - Tipologia di Copertura):** Riporta le tre categorie ecologiche determinate tramite riclassificazione:
+  1. **Roccia/Suolo Nudo ($\text{NDVI} < 0.2$):** Superfici prive di vegetazione fotosinteticamente attiva o ancora innevate.
+  2. **Pascolo Degradato ($\text{NDVI}$ tra $0.2$ e $0.5$):** Vegetazione scarseggiante, in fase iniziale di crescita o soggetta a stress/secchezza.
+  3. **Pascolo Sano ($\text{NDVI} > 0.5$):** Prateria alpina densa, rigogliosa e in piena attività fotosintetica.
+* **Asse delle Ordinate (Y - Percentuale sul totale %):** Esprime l'incidenza percentuale di ciascuna classe rispetto alla superficie totale analizzata.
+  * **Verde Scuro (Maggio):** Stato delle coperture nella tarda primavera (fase di risveglio vegetativo).
+  * **Arancione (Agosto):** Stato delle coperture nel pieno dell'estate (acme della biomassa).
+
+---
+
+#### 📊 Commento Quantitativo ed Ecologico
+
+* **Riduzione di Roccia/Suolo Nudo:** 
+  * A Maggio questa classe rappresenta circa il **23-24%** del territorio, a causa della presenza di chiazze di neve residua e ampie porzioni di suolo non ancora inattivo.
+  * Ad Agosto la percentuale si dimezza, scendendo a circa l'**10-11%**, corrispondente alle sole pareti rocciose primarie ed esposte privabili di vegetazione.
+
+* **Riduzione del Pascolo Degradato/Scarso:**
+  * A Maggio attesta circa il **24%**, riflettendo una vegetazione che ha appena iniziato il ciclo di crescita e non ha ancora sviluppato una chioma densa.
+  * Ad Agosto si riduce a circa l'**11%**, poiché la maggior parte della prateria transita verso la classe di massima vigoria.
+
+* **Forte Espansione del Pascolo Sano:**
+  * Passa da circa il **53-54%** a Maggio a quasi l'**80%** ad Agosto.
+  * Questo incremento netto dimostra quantitativamente la risposta della prateria alpina all'innalzamento termico estivo e alla disponibilità di luce, che porta quasi i quattro quinti dell'area ad alte prestazioni fotosintetiche.
 
 ### 5. Mappa Finale dell'Eterogeneità Spaziale
 Grafico ad alta risoluzione generato con `ggplot2` che mappa la frammentazione ecologica locale (Deviazione Standard su finestra mobile $3 \times 3$):

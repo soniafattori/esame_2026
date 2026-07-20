@@ -54,22 +54,28 @@ library(imageRy)    # Database con dati e funzioni del corso
 ```
 
 ### 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
+
+Visualizziamo la lista dei dataset interni disponibili nel pacchetto
 ```r
-# Visualizziamo la lista dei dataset interni disponibili nel pacchetto
-
 im.list()
+```
 
-# Importiamo i file raster (mappe) dell'NDVI del 2020 relativi al Passo Falzarego (Dolomiti)
+Importiamo i file raster (mappe) dell'NDVI del 2020 relativi al Passo Falzarego (Dolomiti)
+```r
 ndvi_feb <- im.import("Sentinel2_NDVI_2020-02-21.tif") # Inverno (Dormienza/Neve)
 ndvi_mag <- im.import("Sentinel2_NDVI_2020-05-21.tif") # Primavera (Greening)
 ndvi_ago <- im.import("Sentinel2_NDVI_2020-08-01.tif") # Estate (Picco/Siccità)
 ndvi_nov <- im.import("Sentinel2_NDVI_2020-11-27.tif") # Autunno (Senescenza)
+```
 
-# Creiamo il RasterStack multitemporale concatenando i singoli layer per visualizzare i dataset contemporaneamente (e rinominiamo i layer)
+Creiamo il RasterStack multitemporale concatenando i singoli layer per visualizzare i dataset contemporaneamente (e rinominiamo i layer)
+```r
 punti_stagionali <- c(ndvi_feb, ndvi_mag, ndvi_ago, ndvi_nov)
 names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
+```
 
-# Visualizzazione della serie temporale completa con palette viridis
+Visualizziamo la serie temporale completa con palette viridis
+```r
 plot(punti_stagionali, col=viridis(100))
 
 # 01_serie_stagionale.png

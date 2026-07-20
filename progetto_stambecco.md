@@ -176,10 +176,37 @@ ggplot() +
 ---
 
 ## 📊 Visualizzazione dell'Output Cartografico 
-### 1. Dinamica Fenologica Stagionale (NDVI)
+### 1. Dinamica stagionale della biomassa vegetale e dell'indice NDVI (Passo Falzarego, 2020)
 La figura seguente mostra la variazione della biomassa vegetale nel Passo Falzarego durante le quattro stagioni dell'anno 2020, evidenziando il ciclo di crescita e dormienza:
 
 <img width="1536" height="738" alt="01_serie_stagionale" src="https://github.com/user-attachments/assets/bf7574cb-37fb-4eba-96c2-7cb7b1bd8567" />
+
+---
+L'**NDVI** (*Normalized Difference Vegetation Index*) misura il grado di vigoria e densità della vegetazione fotosinteticamente attiva, quantificando la differenza tra la riflettanza nel vicino infrarosso e nel rosso. Nella visualizzazione basata sulla palette *Viridis*:
+
+* **Valori negativi e vicini allo 0 ($\approx -0.4$ a $0.2$) – Tonalità Viola scuro / Blu:** Indicano la totale assenza di vegetazione fotosintetica attiva. Corrispondono a superfici coperte da manto nevoso, ghiaccio, corpi idrici o roccia affiorante priva di copertura vegetale.
+* **Valori intermedi ($\approx 0.2$ a $0.5$) – Tonalità Verde / Azzurro:** Rappresentano fasi transitorie, come la vegetazione in fase di risveglio o senescenza, pascoli radi o aree a copertura mista (roccia e prateria sparso).
+* **Valori elevati ($\approx 0.5$ a $0.8+$) – Tonalità Giallo brillante:** Indicano una vegetazione densa, rigogliosa e al picco dell'attività fotosintetica.
+
+---
+
+#### 📅 Analisi Stagionale del Ciclo Vegetativo
+
+* **Febbraio (Inverno):** 
+  * Prevalenza quasi assoluta di tonalità **viola scuro e blu** (valori compresi tra $-0.2$ e $0.2$).
+  * Il territorio si trova in piena dormienza invernale, dominato da un'estesa copertura nevosa che azzera la risposta fotosintetica della prateria. Solo limitate pareti rocciose scoperte mostrano valori di poco superiori allo zero.
+
+* **Maggio (Primavera / *Greening*):** 
+  * Marcata transizione verso il **verde e il giallo** (valori compresi tra $0.4$ e $0.8$), specialmente nei versanti a quota inferiore o meglio esposti.
+  * Coincide con la fase di risveglio vegetativo (*greening*). Con il progressivo scioglimento delle nevi e l'innalzamento delle temperature, la prateria alpina riattiva rapidamente la fotosintesi e incrementa la densità fogliare.
+
+* **Agosto (Estate / Picco di Biomassa & Stress):** 
+  * Massima estensione delle aree in **giallo brillante** (valori tra $0.6$ e $>0.8$).
+  * Rappresenta il momento di massimo sviluppo della biomassa vegetale. Tuttavia, nelle porzioni centro-meridionali si notano prime chiazze viranti al verde-azzurro, sintomo di un iniziale disseccamento o stress idrico estivo del pascolo.
+
+* **Novembre (Autunno / Senescenza):** 
+  * Regressione generalizzata verso sfumature **blu scuro e verde cupo** (valori che scendono sotto $0.2$).
+  * Fasi conclusive della stagione vegetativa. La perdita di clorofilla e il calo delle temperature riducono drasticamente la vigoria del pascolo; le prime spolverate di neve ad alta quota contribuiscono al riabbassamento generale dell'indice.
 
 ### 2. Mappa di Rilevamento del Cambiamento ($\Delta NDVI$)
 Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggette a forte disseccamento estivo della risorsa trofica:

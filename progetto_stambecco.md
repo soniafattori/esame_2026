@@ -338,31 +338,42 @@ Tra maggio e agosto si assiste a una netta **omogeneizzazione verso l'alto della
 
 ---
 
-## 📈 Discussione e conclusioni ecologiche NON MI PIACE
+## 📈 Discussione e Conclusioni Ecologiche
 
-L'applicazione del telerilevamento satellitare multitemporale, unita all'integrazione di metriche di classificazione d'immagine e analisi statistica locale, ha permesso di mappare quantitativamente le dinamiche eco-fenologiche nel Passo Falzarego. I risultati ottenuti non solo risolvono un apparente paradosso numerico, ma forniscono la chiave di lettura spaziale e matematica per comprendere l'ecologia del comportamento e le strategie di sopravvivenza dello Stambecco Alpino (*Capra ibex*).
+L'applicazione del telerilevamento satellitare multitemporale, unita all'integrazione di metriche di riclassificazione e di analisi spaziale focalizzata, ha permesso di mappare quantitativamente le dinamiche eco-fenologiche nel Passo Falzarego. I risultati ottenuti forniscono la chiave di lettura spettrale e matematica per comprendere le strategie di sopravvivenza e l'ecologia del comportamento dello Stambecco alpino (*Capra ibex*).
 
-### 1. Il Fenomeno della "Green Wave" Ritardata ad Alta Quota (Dinamica Trofica)
-L'analisi quantitativa delle frequenze dei pixel rivela un pattern macro-ecologico apparentemente controintuitivo: **la classe Pascolo Sano aumenta in modo significativo nel passaggio dal picco primaverile di Maggio (~51%) allo stress estivo di Agosto (~75%)**. Questo trend differisce radicalmente dalle dinamiche degli ecosistemi di pianura, collina o macro-mediterranei, dove l'estate coincide con una senescenza generalizzata e il disseccamento della volta vegetativa. 
+---
 
-Negli ambienti alpini d'alta quota delle Dolomiti, la fenologia vegetale è rigidamente governata dalla criosfera e dalla dinamica del manto nevoso. A Maggio, ampie porzioni del Passo Falzarego (specialmente i versanti esposti a nord, i canaloni e i pianori sommitali oltre i 2100 m) si trovano ancora in una fase di profonda dormienza invernale o risultano fisicamente coperte da nevai stagionali. Questo si traduce nei dati spettrali in elevati tassi di "Roccia / Suolo Nudo" (~22%) e "Pascolo Degradato/Rado" (~23%). Ad Agosto, il completo disgelo e l'incremento dell'orto-radiazione solare innescano un'esplosione vegetativa tardiva, sincrona e impulsiva sulle vette (*delayed green wave*). Questo risveglio di massa comprime drasticamente le aree abiotiche o stentate (~11% ciascuna), convertendole in una prateria d'alta quota continua, caratterizzata da alti valori di NDVI (Classe 3 al 75%) e ricca di tessuti vegetali giovani.
+### 1. Il Fenomeno della "Green Wave" Ritardata ad Alta Quota
 
-### 2. Spostamento Spaziale della Risorsa e Migrazione Verticale dell'Erbivoro
-Sebbene l'estensione complessiva del pascolo sano aumenti su scala di matrice paesaggistica, la mappa di rilevamento del cambiamento ($\Delta NDVI$) svela un'eterogeneità spaziale critica e un forte gradiente altitudinale. I fondovalle stabili e le quote inferiori mostrano diffuse anomalie negative (colorazioni scure nella palette *magma*), indizio di un principio di senescenza precoce e perdita di turgore fogliare indotti dallo stress termico estivo. Al contrario, il segno positivo del cambiamento si concentra esclusivamente lungo i margini superiori.
+L'analisi quantitativa delle frequenze spettrali ed estrazione dei dati evidenzia un pattern macro-ecologico tipico degli ambienti di alta montagna: **la classe *Pascolo Sano* ($\text{NDVI} > 0.5$) subisce una forte espansione, passando dal $53.3\%$ di maggio al $79.1\%$ di agosto**. Questo trend si contrappone nettamente alle dinamiche degli ecosistemi di pianura o medilitoranei, dove la stagione estiva coincide con un disseccamento generalizzato della copertura vegetale.
 
-Per lo stambecco, questa asincronia rappresenta la vera **ragione principale della migrazione verticale estiva**. La *Capra ibex* è un grande erbivoro altamente specializzato ma fortemente termosensibile, che manifesta alterazioni fisiologiche e stress metabolico già sopra i 15 °C. La risalita verso le creste ad Agosto risponde quindi a un trade-off vitale:
-1. **Inseguimento della qualità trofica:** L'animale abbandona i fondovalle caldi dove l'erba è ormai lignificata, indigeribile e povera di nutrienti, muovendosi verso l'alto per intercettare quel 75% di pascolo fresco, tenero e ad altissimo contenuto di azoto e proteine.
-2. **Oasi termica:** Lo spostamento in quota consente la frequentazione di microclimi ventilati e freschi, riducendo i costi energetici di termoregolazione.
+Nelle Dolomiti, la fenologia della vegetazione è strettamente regolata dalla criosfera. Nel mese di maggio, ampie porzioni del Passo Falzarego (in particolare i versanti esposti a nord, i canaloni e le conche sommitali oltre i $2100\text{ m}$) si trovano ancora in dormienza o risultano coperte da nevai stagionali. Ciò si traduce nei dati spettrali con percentuali rilevanti di *Roccia / Suolo Nudo* ($23.1\%$) e *Pascolo Degradato* ($23.6\%$). Ad agosto, il completo disgelo e l'incremento dell'irraggiamento solare innescano una risposta vegetativa tardiva e impulsiva (*delayed green wave*). Tale risveglio riduce le superfici abiotiche o poco produttive al $10.3\%$ e $10.6\%$, convertendo gran parte del paesaggio in una prateria alpina continua e ad alta densità fotosintetica.
 
-### 3. Eterogeneità Ambientale come Nicchia di Rifugio e Sicurezza
-La mappa finale dell'eterogeneità spaziale, computata mediante deviazione standard locale su finestra mobile $3 \times 3$, evidenzia come i massimi valori di frammentazione strutturale (aree calde in palette *inferno*) non siano distribuiti casualmente, ma ricalchino fedelmente gli ecotoni geomorfologici. Si tratta delle fasce di transizione dove la prateria alpina d'alta quota si frammenta e si incastra con pareti di roccia verticale, ghiaioni e detriti di falda.
+---
 
-Dal punto di vista dell'ecologia comportamentale, questi habitat ad alta eterogeneità rappresentano la principale nicchia di rifugio estiva per la specie, garantendo una strategia di ottimizzazione dello spazio:
-* **Anti-predazione e Riposo:** La contiguità spaziale con le pareti rocciose verticali offre vie di fuga immediate ed esclusive contro predatori d'avanguardia (come il lupo) e fornisce zone d'ombra stabili per il riposo diurno.
-* **Foraggiamento di precisione:** Le piccole nicchie erbose confinate tra i blocchi rocciosi, seppur frammentate, beneficiano dell'umidità rilasciata dalla fusione delle nevi perenni, restando protette dall'inaridimento di massa e permettendo un pascolamento sicuro senza l'obbligo per l'animale di esporsi in campo aperto a quote inferiori.
+### 2. Migrazione Verticale ed Asincronia Trofica dell'Erbivoro
 
-### 4. Il Ruolo del Telerilevamento Open-Source nella Conservazione Attiva
-In conclusione, l'integrazione di indici spettrali standardizzati ($NDVI$), matrici di riclassificazione quantitativa e metriche di variabilità spaziale (*focal standard deviation*) si dimostra uno strumento diagnostico e predittivo fondamentale per l'ecologia della conservazione. I cambiamenti climatici globali rischiano di accelerare i processi di disgelo, alterando il timing della *green wave* e riducendo la finestra temporale di alimentazione ottimale per gli erbivori d'alta quota (*mismatch fenologico*).
+Sebbene l'estensione complessiva del pascolo ad alta vigoria aumenti a scala di matrice paesaggistica, la mappa di variazione differenziale ($\Delta\text{NDVI}$) svela un'elevata eterogeneità spaziale. Nei fondovalle a quota inferiore si registrano locali decrementi o stazionarietà dell'indice, sintomo di un precoce stress idrico o dell'avvio della fase di senescenza fogliare. Al contrario, i valori fortemente positivi dell'incremento dell'NDVI si concentrano lungo i versanti superiori e le fasce altitudinali elevate.
 
+Per lo Stambecco alpino, questa asincronia rappresenta il fattore guida della **migrazione verticale estiva**. *Capra ibex* è un grande erbivoro termosensibile che manifesta stress metabolico a temperature ambientali superiori ai $15\text{ }^\circ\text{C}$. La risalita verso le quote maggiori ad agosto risponde a un duplice requisito di sopravvivenza:
 
+* **Inseguimento del picco nutrizionale:** L'animale abbandona i pascoli di quota inferiore, ormai lignificati e meno digeribili, spostandosi verso l'alto per intercettare la prateria alpina in fase di accrescimento, ricca di tessuti giovani ad alto contenuto proteico.
+* **Mantenimento del comfort termico:** La frequentazione dei crinali elevati e delle pareti ventilate consente all'animale di ridurre i costi energetici legati alla termoregolazione diurna.
 
+---
+
+### 3. Eterogeneità Spaziale come Nicchia di Rifugio e Sicurezza
+
+La mappa dell'eterogeneità spaziale, calcolata mediante Deviazione Standard locale su finestra mobile $3 \times 3$, dimostra come i picchi di variabilità strutturale (evidenziati dalle tonalità chiare nella palette *Inferno*) ricalchino con precisione gli ecotoni geomorfologici. Si tratta delle fasce di transizione in cui la prateria si interfaccia direttamente con pareti rocciose scoscese, conoidi e detriti di falda.
+
+In ottica comportamentale, questi contesti ad alta eterogeneità costituiscono l'habitat estivo di elezione per lo stambecco, garantendo la coesistenza di due esigenze fondamentali:
+
+* **Strategia anti-predatoria:** La diretta adiacenza con le pareti rocciose verticali offre vie di fuga immediate e riparo da predatori (come il lupo), oltre a microambienti ombreggiati per la sosta nelle ore più calde.
+* **Pascolamento di precisione:** Le nicchie erbose incastrate tra le rocce beneficiano del rilascio di umidità dai nevai perenni, mantenendo un'elevata qualità nutrizionale e consentendo all'animale di alimentarsi senza doversi esporre in aree aperte e vulnerabili a quota inferiore.
+
+---
+
+### 4. Applicazioni del Telerilevamento nella Conservazione della Fauna
+
+In conclusione, l'integrazione di indici spettrali ($\text{NDVI}$), matrice di riclassificazione quantitativa e metriche di variabilità spaziale (*focal standard deviation*) si conferma uno strumento diagnostico essenziale per la biologia della conservazione. Nell'attuale contesto di cambiamento climatico, l'anticipo del disgelo rischia di alterare la sincronia della *green wave*, riducendo la finestra temporale di alimentazione ottimale per gli ungulati d'alta quota (*mismatch fenologico*). Il telerilevamento open-source offre quindi un supporto decisivo per la pianificazione e la tutela degli habitat montani fragili.

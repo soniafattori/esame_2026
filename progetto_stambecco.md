@@ -228,10 +228,33 @@ La legenda a destra quantifica la differenza di valore dell'NDVI tra i due perio
 * **Dinamica di fusione della neve e rigoglio estivo:** Le diffuse macchie di colore **giallo e arancione chiaro** concentrate nella porzione centro-meridionale e lungo i canaloni mostrano dove il disgelo tardivo ha permesso alla vegetazione alpina di emergere e svilupparsi rapidamente nell'arco dei tre mesi estivi.
 * **Stabilità delle pareti rocciose:** Le estese zone in **viola scuro e arancione scuro** nella metà settentrionale e nord-orientale evidenziano le pareti dolomitiche e i ghiaioni ad alta quota, dove l'assenza di suolo o la presenza di sola roccia nuda impedisce variazioni significative della copertura vegetale tra le due stagioni.
 
-### 3. Istogrammi di Distribuzione Spettrale
-Confronto delle frequenze dei pixel di NDVI, evidenziando lo shift e la ristrutturazione della popolazione dei pixel tra primavera ed estate:
+### 3. Confronto della distribuzione della biomassa vegetale tra il risveglio primaverile e il picco estivo
+I due istogrammi seguenti mostrano la distribuzione di frequenza dei pixel per le diverse classi di valore NDVI nell'area del Passo Falzarego, mettendo a diretto confronto la situazione primaverile (Maggio) e quella estiva (Agosto):
 
 <img width="1536" height="715" alt="04_istogrammi_confronto" src="https://github.com/user-attachments/assets/ec65b960-e236-454c-ba89-acc2a17257b5" />
+
+---
+
+* **Asse delle Ascisse (X - Valori NDVI):** Rappresenta i valori continui dell'indice NDVI, estesi da $-0.4$ a $0.85$. I valori inferiori a $0.2$ indicano superfici prive di vegetazione (roccia, neve, suolo nudo), mentre i valori superiori a $0.5$ indicano vegetazione densa e fotosinteticamente attiva.
+* **Asse delle Ordinate (Y - Frequency):** Indica il numero di pixel (frequenza) presenti nella mappa per ciascun intervallo di NDVI. Entrambi gli istogrammi sono stati bloccati sul medesimo limite massimo ($65.000$ pixel) per garantire un confronto quantitativo e visivo immediato.
+* **Verde Scuro (Maggio):** Simboleggia il risveglio vegetativo primaverile (*greening*).
+* **Arancione (Agosto):** Rappresenta la fase di maturazione estiva e il picco di accumulo della biomassa.
+
+---
+
+#### 📊 Commento Statistico ed Ecologico
+
+* **Distribuzione a Maggio (Primavera):** 
+  * L'istogramma presenta una **distribuzione bimodale** o più dispersa.
+  * Si osserva un primo picco significativo centrato attorno al valore $0.0$ (circa $18.000$ pixel), dovuto alla presenza di neve residua e suolo/roccia ancora scoperta ad alta quota.
+  * Il secondo picco si colloca tra $0.5$ e $0.6$ (con una frequenza massima di circa $32.000$ pixel), rappresentando la porzione di pascolo che ha già avviato l'attività fotosintetica nei versanti più caldi.
+
+* **Distribuzione ad Agosto (Estate):** 
+  * Si assiste a uno spiccato **slittamento verso destra (shift positivo)** dell'intera curva di frequenza.
+  * Il picco legato alla neve/roccia (attorno allo $0.0$) crolla quasi del tutto, testimoniando la completa fusione del manto nevoso.
+  * Si forma una **fortissima concentrazione di pixel (modalità acuta)** nei valori alti dell'NDVI, precisamente tra $0.65$ e $0.75$, dove la frequenza supera i **$65.000$ pixel**. Questo picco rappresenta l'acme dello sviluppo fogliare e della biomassa del pascolo alpino.
+
+* **Sintesi Ecologica:** Il confronto evidenzia quantitativamente la transizione della prateria da una fase eterogenea e parzialmente dormiente a Maggio verso una fase di omogeneità ad elevata attività fotosintetica ad Agosto.
 
 ### 4. Grafico di Copertura Percentuale Estratta
 Come evidenziato dall'elaborazione statistica ggplot2, la ripartizione del territorio mostra un incremento netto del pascolo sano nel mese estivo dovuto alla deglaciazione delle vette:

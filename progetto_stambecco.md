@@ -208,10 +208,25 @@ L'**NDVI** (*Normalized Difference Vegetation Index*) misura il grado di vigoria
   * Regressione generalizzata verso sfumature **blu scuro e verde cupo** (valori che scendono sotto $0.2$).
   * Fasi conclusive della stagione vegetativa. La perdita di clorofilla e il calo delle temperature riducono drasticamente la vigoria del pascolo; le prime spolverate di neve ad alta quota contribuiscono al riabbassamento generale dell'indice.
 
-### 2. Mappa di Rilevamento del Cambiamento ($\Delta NDVI$)
-Sottrazione spettrale tra Agosto e Maggio. I toni scuri indicano le aree soggette a forte disseccamento estivo della risorsa trofica:
+### 2. Valutazione dell'incremento di fotosintesi netta tramite differenziazione NDVI (Agosto vs Maggio)
+La mappa seguente mostra la variazione differenziale dell'indice NDVI ($\Delta\text{NDVI}$) calcolata tra il mese di agosto e il mese di maggio. L'analisi evidenzia i cambiamenti netti nella copertura e nella vigoria della vegetazione tra la tarda primavera e il picco estivo:
 
 <img width="1536" height="738" alt="02_differenza_ndvi" src="https://github.com/user-attachments/assets/cb070c63-793c-4876-8488-ccbbe1c6d5ae" />
+
+---
+
+La legenda a destra quantifica la differenza di valore dell'NDVI tra i due periodi ($\text{NDVI}_{\text{Agosto}} - \text{NDVI}_{\text{Maggio}}$), su una scala che varia indicativamente da $-0.6$ a $+0.8$:
+
+* **Valori negativi ($\approx -0.6$ a $0.0$) – Tonalità Viola scuro / Blu / Magenta cupo:** Indicano una diminuzione o una stabilità dell'indice NDVI da maggio ad agosto. Nelle aree montane ciò è legato a zone prive di vegetazione fotosintetica (roccia nuda, pareti scoscese, scree o ghiaioni) oppure a superfici che a maggio erano già libere da neve e la cui vigoria non è aumentata ulteriormente.
+* **Valori moderatamente positivi ($\approx 0.1$ a $0.4$) – Tonalità Arancione / Rosa intenso:** Rappresentano un incremento moderato della biomassa e dell'attività fotosintetica. Corrispondono a praterie di fondo valle e pascoli che a maggio avevano già avviato il ciclo vegetativo e che in estate consolidano la propria copertura.
+* **Valori fortemente positivi ($\approx 0.5$ a $0.8+$) – Tonalità Giallo chiaro / Bianco brillante:** Evidenziano i massimi incrementi netti dell'indice NDVI. Corrispondono alle porzioni di territorio (spesso a quote medio-alte o in versanti in ombra/a nord) che a maggio erano ancora coperte da neve residua o in forte ritardo fenologico, e che ad agosto raggiungono il loro massimo sviluppo vegetativo.
+
+---
+
+#### 📝 Commento Ecologico e Territoriale
+
+* **Dinamica di fusione della neve e rigoglio estivo:** Le diffuse macchie di colore **giallo e arancione chiaro** concentrate nella porzione centro-meridionale e lungo i canaloni mostrano dove il disgelo tardivo ha permesso alla vegetazione alpina di emergere e svilupparsi rapidamente nell'arco dei tre mesi estivi.
+* **Stabilità delle pareti rocciose:** Le estese zone in **viola scuro e arancione scuro** nella metà settentrionale e nord-orientale evidenziano le pareti dolomitiche e i ghiaioni ad alta quota, dove l'assenza di suolo o la presenza di sola roccia nuda impedisce variazioni significative della copertura vegetale tra le due stagioni.
 
 ### 3. Istogrammi di Distribuzione Spettrale
 Confronto delle frequenze dei pixel di NDVI, evidenziando lo shift e la ristrutturazione della popolazione dei pixel tra primavera ed estate:

@@ -5,14 +5,12 @@ install.packages("tidyterra")             # Integrazione nativa di oggetti SpatR
 install.packages("ggplot2")               # Visualizzazione grafica avanzata e la mappatura
 install.packages("viridis")               # Palette di colori per l'accessibilità visiva
 install_github("ducciorocchini/imageRy")  # Repository di dati e funzioni del corso
-install.packages("patchwork")             # Necessario per affiancare grafici ggplot2 diversi
 
 library(terra)
 library(tidyterra)
 library(ggplot2)
 library(viridis)
 library(imageRy)
-library(patchwork)
 
 # 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (SENTINEL-2 - Passo Falzarego) 
 # Visualizziamo la lista dei dataset interni disponibili nel pacchetto

@@ -55,17 +55,21 @@ library(imageRy)    # Database con dati e funzioni del corso
 
 ### 2. IMPORTAZIONE DEI DATI SATELITARI STAGIONALI (Sentinel-2 - Passo Falzarego)
 ```r
+# Visualizziamo la lista dei dataset interni disponibili nel pacchetto
+
+im.list()
+
 # Importiamo i file raster (mappe) dell'NDVI del 2020 relativi al Passo Falzarego (Dolomiti)
 ndvi_feb <- im.import("Sentinel2_NDVI_2020-02-21.tif") # Inverno (Dormienza/Neve)
 ndvi_mag <- im.import("Sentinel2_NDVI_2020-05-21.tif") # Primavera (Greening)
 ndvi_ago <- im.import("Sentinel2_NDVI_2020-08-01.tif") # Estate (Picco/Siccità)
 ndvi_nov <- im.import("Sentinel2_NDVI_2020-11-27.tif") # Autunno (Senescenza)
 
-# Creazione del RasterStack multitemporale
+# Creiamo il RasterStack multitemporale concatenando i singoli layer per visualizzare i dataset contemporaneamente (e rinominiamo i layer)
 punti_stagionali <- c(ndvi_feb, ndvi_mag, ndvi_ago, ndvi_nov)
 names(punti_stagionali) <- c("Febbraio", "Maggio", "Agosto", "Novembre")
 
-# Visualizzazione della serie temporale completa con lapette viridis
+# Visualizzazione della serie temporale completa con palette viridis
 plot(punti_stagionali, col=viridis(100))
 
 # 01_serie_stagionale.png
@@ -75,6 +79,8 @@ plot(punti_stagionali, col=viridis(100))
 ```r
 # Applichiamo un'operazione di algebra dei raster sottraendo il pixel primaverile da quello estivo per evidenziare quantitativamente il viraggio o il disseccamento del pascolo
 diff_estate_primavera <- ndvi_ago - ndvi_mag
+
+# Plottiamo la differenza per vedere dove la vegetazione è aumentata o diminuita
 plot(diff_estate_primavera, col=magma(100), 
      main="Variazione dell'NDVI (Agosto vs Maggio)")
 
@@ -90,25 +96,29 @@ hist(ndvi_ago, main = "Distribuzione NDVI Agosto", col = "orange", xlab = "Valor
 
 # 04_istogrammi_confronto.png
 
+# Reset del pannello grafico
 dev.off() # Reset del pannello grafico
 ```
 
 ### 5. RICLASSIFICAZIONE E CALCOLO DELLE PERCENTUALI DI COPERTURA
 ```r
-# Definizione delle matrici di soglia ecologica
-matrice_classi <- matrix(c(-Inf, 0.2, 1,                              # Classe 1 (< 0.2): Roccia nuda / Suolo nudo
-                           0.2, 0.5, 2,                               # Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
-                           0.5, Inf, 3), ncol = 3, byrow = TRUE)      # Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
+# Definiamo una matrice di riclassificazione basata su soglie ecologiche:
+# Classe 1 (< 0.2): Roccia nuda / Suolo nudo
+# Classe 2 (0.2 - 0.5): Pascolo degradato o fortemente stressato/secco
+# Classe 3 (> 0.5): Pascolo sano, rigoglioso e ad alta vigoria
+matrice_classi <- matrix(c(-Inf, 0.2, 1,
+                           0.2, 0.5, 2,
+                           0.5, Inf, 3), ncol = 3, byrow = TRUE)
 
-# Riclassificazione dei raster di Maggio e Agosto
+# Riclassifichiamo i raster di Maggio e Agosto
 classi_mag <- classify(ndvi_mag, matrice_classi)
 classi_ago <- classify(ndvi_ago, matrice_classi)
 
-# Estrazione delle frequenze
+# Estraiamo le frequenze
 f_mag <- freq(classi_mag)
 f_ago <- freq(classi_ago)
 
-# Calcolo delle percentuali escludendo i pixel NA dal totale
+# Calcoliamo le percentuali escludendo i pixel NA dal totale
 tot_pixel_mag <- sum(f_mag$count)
 tot_pixel_ago <- sum(f_ago$count)
 
@@ -138,7 +148,7 @@ tabella_long <- data.frame(
 # Inseriamo l'ordine cronologico (Maggio prima di Agosto)
 tabella_long$Mese <- factor(tabella_long$Mese, levels = c("Maggio", "Agosto"))
 
-# Grafico a barre raggruppate
+# Creiamo il rafico a barre raggruppate
 ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_manual(values = c("darkgreen", "orange")) +
@@ -161,6 +171,7 @@ names(eterogeneita_ago) <- "Eterogeneita"
 
 ### 8. VISUALIZZAZIONE TRAMITE PLOT CARTOGRAFICO
 ```r
+# Creiamo la mappa di distribuzione dell'eterogeneità spaziale dell'NDVI
 ggplot() +
   geom_spatraster(data = eterogeneita_ago, aes(fill = Eterogeneita)) +
   scale_fill_viridis_c(option = "inferno", na.value = "transparent") +

@@ -183,9 +183,9 @@ ggplot(tabella_long, aes(x = Stato_Pascolo, y = Percentuale, fill = Mese)) +
 
 ### 7. CALCOLO DELL'ETEROGENEITÀ SPAZIALE SULLA MAPPA DI AGOSTO
 Utilizziamo una funzione locale (focal) basata sul concetto di finestra mobile (moving window). 
-- w = matrix(1,3,3) definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
-- fun = sd stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
-- na.rm = TRUE garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
+- w = matrix(1,3,3): definisce una matrice quadrata di 3x3 pixel centrata sul pixel target. 
+- fun = sd: stabilisce che la metrica calcolata all'interno della finestra è la Deviazione Standard. 
+- na.rm = TRUE: garantisce che eventuali pixel mancanti (NA) ai bordi non interrompano il calcolo.
 ```r
 eterogeneita_ago <- focal(ndvi_ago, w=matrix(1,3,3), fun=sd, na.rm=TRUE)
 names(eterogeneita_ago) <- "Eterogeneita"
